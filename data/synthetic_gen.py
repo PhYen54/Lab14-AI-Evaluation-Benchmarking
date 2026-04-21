@@ -1,103 +1,204 @@
-import json
 import asyncio
+import json
 import os
-from typing import List, Dict
+import re
+from pathlib import Path
+from typing import Dict, List
 from openai import AsyncOpenAI
-from dotenv import load_dotenv  # Thêm dòng này
-
-# Nạp các biến từ file .env vào os.environ
+from dotenv import load_dotenv
 load_dotenv()
-client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-# Giả lập việc gọi LLM để tạo dữ liệu (Students will implement this)
-async def generate_qa_from_text(text: str, num_pairs: int = 50) -> List[Dict]:
-    """
-    Sửa lỗi: Đưa danh sách vào một key cố định để khớp với json_object mode.
-    """
-    print(f"Generating {num_pairs} QA pairs from text...")
-        
-    prompt = f"""
-    Phân tích đoạn văn bản sau và tạo {num_pairs} cặp câu hỏi/trả lời để benchmark hệ thống RAG.
-    
-    CONTEXT:
-    ---
-    {text}
-    ---
 
-    YÊU CẦU CHI TIẾT:
-    1. Tính đa dạng: Tạo các câu hỏi về sự thật, tóm tắt và suy luận.
-    2. Hard Cases (BẮT BUỘC):
-        - Ít nhất 5 câu 'Adversarial'.
-        - Ít nhất 5 câu 'Edge Case' (Out-of-context).
-        - Ít nhất 5 câu 'Ambiguous'.
-    3. Định danh tài liệu: Mỗi case PHẢI đi kèm với `expected_retrieval_ids`.
+BASE_DIR = Path(__file__).parent.parent
+DOCS_PATH = Path('data')
+VECTOR_OUT = Path(__file__).parent / "vector_db.json"
+GOLDEN_OUT = Path(__file__).parent / "golden_set.jsonl"
 
-    FORMAT TRẢ VỀ (BẮT BUỘC PHẢI LÀ JSON OBJECT CÓ KEY 'qa_pairs'):
-    {{
-      "qa_pairs": [
-        {{
-          "question": "Câu hỏi",
-          "expected_answer": "Câu trả lời kỳ vọng",
-          "context": "Đoạn trích liên quan",
-          "metadata": {{
-            "difficulty": "easy/medium/hard",
-            "type": "fact-check/adversarial/out-of-context/ambiguous",
-            "reasoning": "Giải thích"
-          }}
-        }}
-      ]
-    }}
-    """
+TARGET_SIZE = 50
+
+# =========================
+# VECTOR DB BUILDING
+# =========================
+
+def extract_chunks() -> List[Dict]:
+    chunks: List[Dict] = []
+
+    for file in sorted(DOCS_PATH.glob("*.txt")):
+        content = file.read_text(encoding="utf-8")
+        lines = content.splitlines()
+
+        meta = {"source": "", "department": ""}
+        for ln in lines[:8]:
+            if ln.startswith("Source:"):
+                meta["source"] = ln[7:].strip()
+            elif ln.startswith("Department:"):
+                meta["department"] = ln[11:].strip()
+
+        sections = re.split(r"===\s*(.+?)\s*===", content)
+
+        for i in range(1, len(sections) - 1, 2):
+            section_name = sections[i].strip()
+            body = sections[i + 1].strip()
+
+            if not body:
+                continue
+
+            chunks.append({
+                "chunk_id": f"{file.stem}_c{len(chunks)+1}",
+                "source": meta["source"],
+                "section": section_name,
+                "text": body
+            })
+
+    return chunks
+
+
+# =========================
+# PROMPT BUILDER
+# =========================
+
+def build_generation_prompt(chunks: List[Dict], distribution: Dict[str, int]) -> str:
+    payload = json.dumps(
+        [{"id": c["chunk_id"], "txt": c["text"][:500]} for c in chunks],
+        ensure_ascii=False
+    )
+
+    total = sum(distribution.values())
+
+    return f"""
+Create {total} Vietnamese RAG test cases using the following chunks:
+{payload}
+
+Distribution:
+{json.dumps(distribution)}
+
+Each item MUST include:
+- question
+- expected_answer
+- ground_truth_id
+- expected_retrieval_ids (list)
+- difficulty (easy|medium|hard|multi_hop)
+- type (standard|adversarial|edge_case)
+- category
+
+Return ONLY a JSON array.
+"""
+
+
+# =========================
+# LLM CALL
+# =========================
+
+async def generate_cases(prompt: str) -> str:
+    client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    response = await client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+
+    return response.choices[0].message.content
+
+
+# =========================
+# PARSER
+# =========================
+
+def safe_parse_json(raw: str) -> List[Dict]:
+    match = re.search(r"\[\s*\{.*\}\s*\]", raw, re.DOTALL)
+
+    if match:
+        try:
+            return json.loads(match.group())
+        except:
+            pass
 
     try:
-        response = await client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "Bạn là chuyên gia về AI Data Engineering. Luôn trả về JSON Object có key 'qa_pairs' chứa danh sách các câu hỏi."},
-                {"role": "user", "content": prompt}
-            ],
-            # Mode này yêu cầu chữ 'json' xuất hiện trong prompt và kết quả phải là Object
-            response_format={"type": "json_object"}
-        )
-        
-        # Parse chuỗi JSON từ API
-        raw_content = response.choices[0].message.content
-        result = json.loads(raw_content)
-        
-        # Lấy danh sách từ key 'qa_pairs'
-        qa_list = result.get("qa_pairs", [])
-        
-        # Debug nếu danh sách vẫn rỗng
-        if not qa_list:
-            print(f"⚠️ Cảnh báo: LLM trả về JSON hợp lệ nhưng key 'qa_pairs' trống hoặc sai cấu trúc.")
-            
-        return qa_list
+        data = json.loads(raw)
 
-    except Exception as e:
-        print(f"❌ Lỗi khi chạy SDG: {e}")
-        return []
+        if isinstance(data, list):
+            return data
 
-async def main():
-    all_qa_pairs = []
-    num_batches = 5 
-    
-    # Giả sử bạn đang đọc nội dung từ 1 file docs
-    raw_text = "AI Evaluation là một quy trình kỹ thuật nhằm đo lường chất lượng..."
+        if isinstance(data, dict):
+            for key in ["cases", "data", "test_cases"]:
+                if key in data and isinstance(data[key], list):
+                    return data[key]
+    except:
+        pass
 
-    for i in range(num_batches):
-        print(f"--- Batch {i+1}/{num_batches} ---")
-        # Mỗi lần gọi chỉ yêu cầu 10 câu để đảm bảo chất lượng và không bị cắt token
-        batch_pairs = await generate_qa_from_text(raw_text, num_pairs=10)
-        all_qa_pairs.extend(batch_pairs)
-        
-        # Nghỉ 1 chút để tránh Rate Limit nếu cần
-        await asyncio.sleep(1) 
+    return []
 
-    # Ghi toàn bộ 50 câu vào file
-    with open("golden_set.jsonl", "w", encoding="utf-8") as f:
-        for pair in all_qa_pairs:
-            f.write(json.dumps(pair, ensure_ascii=False) + "\n")
-            
-    print(f"✅ Tổng cộng đã ghi: {len(all_qa_pairs)} dòng vào data/golden_set.jsonl")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# =========================
+# BATCH CONFIG
+# =========================
+
+BATCHES = [
+    ("SLA", ["sla_p1_2026"], {"easy": 4, "medium": 4, "hard": 2, "multi_hop": 2, "adversarial": 1}),
+    ("Refund", ["policy_refund_v4"], {"easy": 4, "medium": 3, "hard": 2, "multi_hop": 2, "adversarial": 2}),
+    ("Access", ["access_control_sop"], {"easy": 4, "medium": 3, "hard": 2, "multi_hop": 2, "adversarial": 1}),
+    ("HR", ["hr_leave_policy"], {"easy": 3, "medium": 3, "hard": 2, "multi_hop": 2, "adversarial": 2}),
+    ("IT", ["it_helpdesk_faq"], {"easy": 3, "medium": 3, "hard": 2, "multi_hop": 2, "adversarial": 0}),
+    ("Cross", ["sla", "access", "refund", "hr", "it"], {"medium": 2, "hard": 3, "multi_hop": 3, "adversarial": 2}),
+]
+
+
+# =========================
+# EXECUTION (NO MAIN)
+# =========================
+
+print("🔧 Building vector database...")
+vector_db = extract_chunks()
+valid_ids = {c["chunk_id"] for c in vector_db}
+
+print(f"Loaded {len(vector_db)} chunks")
+
+all_samples: List[Dict] = []
+
+
+async def run_generation():
+    for name, patterns, dist in BATCHES:
+        print(f"\n📦 Processing batch: {name}")
+
+        batch_chunks = [
+            c for c in vector_db
+            if any(p in c["chunk_id"].lower() for p in patterns)
+        ]
+
+        if not batch_chunks:
+            print("  → Skipped (no data)")
+            continue
+
+        prompt = build_generation_prompt(batch_chunks, dist)
+        raw_output = await generate_cases(prompt)
+
+        cases = safe_parse_json(raw_output)
+        print(f"  → Generated: {len(cases)}")
+
+        valid_cases = [
+            c for c in cases
+            if c.get("ground_truth_id") in valid_ids
+        ]
+
+        print(f"  → Valid: {len(valid_cases)}")
+
+        all_samples.extend(valid_cases)
+
+
+asyncio.run(run_generation())
+
+
+# =========================
+# SAVE RESULTS
+# =========================
+
+print(f"\n💾 Saving {len(all_samples)} samples...")
+
+with open(GOLDEN_OUT, "w", encoding="utf-8") as f:
+    for item in all_samples[:TARGET_SIZE]:
+        f.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+with open(VECTOR_OUT, "w", encoding="utf-8") as f:
+    json.dump(vector_db, f, ensure_ascii=False, indent=2)
+
+print(f"✅ Done. Saved to {GOLDEN_OUT}")
