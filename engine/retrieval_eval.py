@@ -91,41 +91,41 @@ class RetrievalEvaluator:
             "relevancy": hit_rate
         }
 
-    async def evaluate_batch(self, dataset: List[Dict]) -> Dict:
-        """
-        Evaluates retrieval performance across the entire dataset.
-        Returns aggregate metrics.
-        """
-        total_hit_rate = 0.0
-        total_mrr = 0.0
-        num_cases = len(dataset)
+    # async def evaluate_batch(self, dataset: List[Dict]) -> Dict:
+    #     """
+    #     Evaluates retrieval performance across the entire dataset.
+    #     Returns aggregate metrics.
+    #     """
+    #     total_hit_rate = 0.0
+    #     total_mrr = 0.0
+    #     num_cases = len(dataset)
 
-        if num_cases == 0:
-            return {"avg_hit_rate": 0.0, "avg_mrr": 0.0}
+    #     if num_cases == 0:
+    #         return {"avg_hit_rate": 0.0, "avg_mrr": 0.0}
 
-        for i, case in enumerate(dataset):
-            # In evaluate_batch, we assume the dataset item has both expected and actual
-            expected = case.get("expected_retrieval_ids", [])
-            retrieved = case.get("retrieved_ids", [])
+    #     for i, case in enumerate(dataset):
+    #         # In evaluate_batch, we assume the dataset item has both expected and actual
+    #         expected = case.get("expected_retrieval_ids", [])
+    #         retrieved = case.get("retrieved_ids", [])
             
-            hr = self.calculate_hit_rate(expected, retrieved)
-            mrr = self.calculate_mrr(expected, retrieved)
+    #         hr = self.calculate_hit_rate(expected, retrieved)
+    #         mrr = self.calculate_mrr(expected, retrieved)
             
-            total_hit_rate += hr
-            total_mrr += mrr
+    #         total_hit_rate += hr
+    #         total_mrr += mrr
             
-            logger.debug(f"Case {i+1}: HR={hr}, MRR={mrr}")
+    #         logger.debug(f"Case {i+1}: HR={hr}, MRR={mrr}")
 
-        avg_hit_rate = total_hit_rate / num_cases
-        avg_mrr = total_mrr / num_cases
+    #     avg_hit_rate = total_hit_rate / num_cases
+    #     avg_mrr = total_mrr / num_cases
 
-        logger.info(f"Batch Evaluation Results:")
-        logger.info(f"  - Total Cases: {num_cases}")
-        logger.info(f"  - Avg Hit Rate: {avg_hit_rate:.4f}")
-        logger.info(f"  - Avg MRR: {avg_mrr:.4f}")
+    #     logger.info(f"Batch Evaluation Results:")
+    #     logger.info(f"  - Total Cases: {num_cases}")
+    #     logger.info(f"  - Avg Hit Rate: {avg_hit_rate:.4f}")
+    #     logger.info(f"  - Avg MRR: {avg_mrr:.4f}")
 
-        return {
-            "avg_hit_rate": avg_hit_rate,
-            "avg_mrr": avg_mrr,
-            "total_cases": num_cases
-        }
+    #     return {
+    #         "avg_hit_rate": avg_hit_rate,
+    #         "avg_mrr": avg_mrr,
+    #         "total_cases": num_cases
+    #     }
