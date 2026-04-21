@@ -8,7 +8,7 @@ from engine.llm_judge import LLMJudge
 from agent.main_agent import MainAgent, MainAgentV2
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
 
 def _build_evaluator():
@@ -27,24 +27,36 @@ def _build_judge():
 
 def _regression_gate(v1_metrics: dict, v2_metrics: dict) -> dict:
     """
-    Regression gate: compares V1 vs V2 and decides APPROVE / BLOCK / REVIEW.
+    Regression gate
+    - APPROVE: delta_score > 0.2 AND cost_v2 <= cost_v1 * 1.1
+    - BLOCK:   delta_score < -0.2 OR  cost_v2 > cost_v1 * 1.3
     """
+
     v1_score = v1_metrics["avg_judge_score"]
     v2_score = v2_metrics["avg_judge_score"]
     score_delta = v2_score - v1_score
 
+    v1_cost = v1_metrics["total_cost"]
+    v2_cost = v2_metrics["total_cost"]
+
     cost_ratio = (
-        v2_metrics["total_cost"] / v1_metrics["total_cost"]
-        if v1_metrics["total_cost"] > 0 else 0.0
+        v2_cost / v1_cost
+        if v1_cost > 0 else 0.0
     )
+
     latency_delta = v2_metrics["avg_latency"] - v1_metrics["avg_latency"]
 
-    if score_delta > 0.2 and cost_ratio <= 1.5:
+    if score_delta > 0.2 and cost_ratio <= 1.1:
         decision = "APPROVE"
-        reason = "Significant score improvement within cost budget."
-    elif score_delta < -0.2:
+        reason = "Quality improved and cost within acceptable range (<=10%)."
+
+    elif score_delta < -0.2 or cost_ratio > 1.3:
         decision = "BLOCK"
-        reason = "Score regression detected."
+        if score_delta < -0.2:
+            reason = "Quality regression detected (score decreased)."
+        else:
+            reason = "Cost increased beyond acceptable threshold (>30%)."
+
     else:
         decision = "REVIEW"
         reason = "Marginal change -- manual review recommended."
@@ -58,30 +70,44 @@ def _regression_gate(v1_metrics: dict, v2_metrics: dict) -> dict:
         "cost_ratio": round(cost_ratio, 4),
         "latency_delta_seconds": round(latency_delta, 4),
     }
-
-
 def _aggregate_metrics(results: list) -> dict:
     total = len(results)
-    return {
-        "total_cases": total,
-        "total_cost": sum(r.get("cost_usd", 0) for r in results),
-        "total_tokens": sum(r.get("tokens_used", 0) for r in results),
-        "total_wall_clock_seconds": results[-1].get("_run_summary", {}).get("total_wall_clock_seconds", 0),
-        "avg_judge_score": sum(r["judge"]["final_score"] for r in results) / total,
-        "avg_faithfulness": sum(r["ragas"]["faithfulness"] for r in results) / total,
-        "avg_relevancy": sum(r["ragas"]["relevancy"] for r in results) / total,
-        "avg_hit_rate": sum(r["retrieval"]["hit_rate"] for r in results) / total,
-        "avg_mrr": sum(r["retrieval"]["mrr"] for r in results) / total,
-        "avg_agreement_rate": sum(r["judge"]["agreement_rate"] for r in results) / total,
-        "avg_latency": sum(r["latency"] for r in results) / total,
-        "pass_count": sum(1 for r in results if r["status"] == "pass"),
-        "fail_count": sum(1 for r in results if r["status"] == "fail"),
-    }
+    if total == 0:       
+        return {
+            "total_cases": 0,
+            "total_cost": 0,
+            "total_tokens": 0,
+            "total_wall_clock_seconds": 0,
+            "avg_judge_score": 0,
+            "avg_faithfulness": 0,
+            "avg_relevancy": 0,
+            "avg_hit_rate": 0,
+            "avg_mrr": 0,
+            "avg_agreement_rate": 0,
+            "avg_latency": 0,
+            "pass_count": 0,
+            "fail_count": 0,
+        }
+    else:
+        return {
+            "total_cases": total,
+            "total_cost": sum(r.get("cost_usd", 0) for r in results),
+            "total_tokens": sum(r.get("tokens_used", 0) for r in results),
+            "total_wall_clock_seconds": results[-1].get("_run_summary", {}).get("total_wall_clock_seconds", 0),
+            "avg_judge_score": sum(r["judge"]["final_score"] for r in results) / total,
+            "avg_faithfulness": sum(r["ragas"]["faithfulness"] for r in results) / total,
+            "avg_relevancy": sum(r["ragas"]["relevancy"] for r in results) / total,
+            "avg_hit_rate": sum(r["retrieval"]["hit_rate"] for r in results) / total,
+            "avg_mrr": sum(r["retrieval"]["mrr"] for r in results) / total,
+            "avg_agreement_rate": sum(r["judge"]["agreement_rate"] for r in results) / total,
+            "avg_latency": sum(r["latency"] for r in results) / total,
+            "pass_count": sum(1 for r in results if r["status"] == "pass"),
+            "fail_count": sum(1 for r in results if r["status"] == "fail"),
+        }
 
 
 async def run_benchmark(agent_version: str, dataset: list, evaluator, judge, agent=None) -> tuple:
     print(f"\n[Runner] Starting benchmark for [{agent_version}] ({len(dataset)} cases, batch_size=5)...")
-
     if agent is None:
         agent = MainAgent()
     runner = BenchmarkRunner(agent, evaluator, judge)
