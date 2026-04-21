@@ -91,18 +91,24 @@ def compute_metrics(results: List[Dict]) -> Dict:
     total_latency = sum(r.get("latency", 0) for r in results)
     avg_latency = total_latency / total if total > 0 else 0
 
+    pass_rate = (pass_count / total * 100) if total > 0 else 0.0
+
     return {
         "total_cases": total,
         "total_cost": round(total_cost, 7),
         "total_tokens": total_tokens,
         "total_wall_clock_seconds": round(total_latency, 2),
         "avg_judge_score": round(avg_judge_score, 5),
+        "avg_score": round(avg_judge_score, 5),
         "avg_faithfulness": round(avg_faithfulness, 5),
         "avg_relevancy": round(avg_relevancy, 5),
         "avg_hit_rate": round(avg_hit_rate, 4),
+        "hit_rate": round(avg_hit_rate, 4),
         "avg_mrr": round(avg_mrr, 4),
         "avg_agreement_rate": round(avg_agreement_rate, 5),
+        "agreement_rate": round(avg_agreement_rate, 5),
         "avg_latency": avg_latency,
+        "pass_rate": round(pass_rate, 2),
         "pass_count": pass_count,
         "fail_count": fail_count
     }
@@ -183,20 +189,22 @@ def print_comparison(v1: Dict, v2: Dict) -> Tuple[str, Dict]:
     score_delta = v2_score - v1_score
     
     # Cost metrics
-    v1_cost = v1_metrics.get("total_cost_usd", 0)
-    v2_cost = v2_metrics.get("total_cost_usd", 0)
+    v1_cost = v1_metrics.get("total_cost", 0)
+    v2_cost = v2_metrics.get("total_cost", 0)
     cost_ratio = v2_cost / v1_cost if v1_cost > 0 else 1.0
     cost_delta = v2_cost - v1_cost
     cost_increase_pct = round(100 * (cost_ratio - 1), 2)
     
     # Latency metrics
-    v1_latency = v1_metrics.get("avg_latency_seconds", 0)
-    v2_latency = v2_metrics.get("avg_latency_seconds", 0)
+    v1_latency = v1_metrics.get("avg_latency", 0)
+    v2_latency = v2_metrics.get("avg_latency", 0)
     latency_delta = v2_latency - v1_latency
     
     # Pass rate
-    v1_pass_rate = v1_metrics.get("pass_rate", 0)
-    v2_pass_rate = v2_metrics.get("pass_rate", 0)
+    v1_total = max(v1_metrics.get("total_cases", 0), 1)
+    v2_total = max(v2_metrics.get("total_cases", 0), 1)
+    v1_pass_rate = 100 * v1_metrics.get("pass_count", 0) / v1_total
+    v2_pass_rate = 100 * v2_metrics.get("pass_count", 0) / v2_total
     
     print(f"\n📈 Quality:")
     print(f"  V1 Avg Score: {v1_score:.4f}")
@@ -325,15 +333,35 @@ def save_reports(
     
     dataset_size = len(v1_results) if v1_results else len(v2_results)
     
-    # Create unified summary.json with V1/V2 breakdown
-    unified_summary = {
+    # summary.json must remain compatible with check_lab.py:
+    # - metadata.total
+    # - metrics.avg_score
+    # - metrics.hit_rate
+    # - metrics.agreement_rate
+    # We expose V2 as the candidate release metrics and keep V1/V2 comparison below.
+    checklab_summary = {
         "metadata": {
+            "version": "regression_v1_vs_v2",
+            "total": dataset_size,
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
-            "dataset_size": dataset_size,
             "agent_v1": "MainAgent (gpt-4o)",
             "agent_v2": "MainAgentV2 (gpt-4.1)"
         },
         "metrics": {
+            "avg_score": v2_metrics.get("avg_score", 0.0),
+            "pass_count": v2_metrics.get("pass_count", 0),
+            "fail_count": v2_metrics.get("fail_count", 0),
+            "pass_rate": v2_metrics.get("pass_rate", 0.0),
+            "hit_rate": v2_metrics.get("hit_rate", 0.0),
+            "mrr": v2_metrics.get("avg_mrr", 0.0),
+            "faithfulness": v2_metrics.get("avg_faithfulness", 0.0),
+            "relevancy": v2_metrics.get("avg_relevancy", 0.0),
+            "agreement_rate": v2_metrics.get("agreement_rate", 0.0),
+            "avg_latency": v2_metrics.get("avg_latency", 0.0),
+            "total_cost": v2_metrics.get("total_cost", 0.0),
+            "total_tokens": v2_metrics.get("total_tokens", 0)
+        },
+        "comparison": {
             "v1": v1_metrics,
             "v2": v2_metrics
         }
@@ -341,7 +369,7 @@ def save_reports(
     
     # Add regression if provided
     if regression_metrics:
-        unified_summary["regression"] = {
+        checklab_summary["regression"] = {
             "decision": regression_metrics["decision"],
             "reason": regression_metrics["reason"],
             "v1_avg_score": regression_metrics.get("v1_avg_score", 0),
@@ -353,7 +381,7 @@ def save_reports(
     
     # Save unified summary
     with open(os.path.join(REPORT_DIR, "summary.json"), "w", encoding="utf-8") as f:
-        json.dump(unified_summary, f, ensure_ascii=False, indent=2)
+        json.dump(checklab_summary, f, ensure_ascii=False, indent=2)
 
     # Save V2 detailed results (full benchmark data)
     with open(os.path.join(REPORT_DIR, "benchmark_results.json"), "w", encoding="utf-8") as f:

@@ -2,17 +2,17 @@
   "v1_results": [
     {
       "test_case": "P1 severity trong hệ thống ticket có nghĩa là gì?",
-      "agent_response": "P1 severity trong hệ thống ticket có nghĩa là sự cố khẩn cấp (CRITICAL) ảnh hưởng đến toàn bộ hệ thống production và không có giải pháp thay thế (workaround). Ví dụ điển hình cho P1 là khi cơ sở dữ liệu (database) bị sập, API gateway không hoạt động, hoặc toàn bộ người dùng không thể đăng nhập vào hệ thống. Trong trường hợp này, sự cố cần được xử lý ngay lập tức để khôi phục hoạt động của hệ thống.",
+      "agent_response": "P1 severity trong hệ thống ticket có nghĩa là sự cố khẩn cấp (CRITICAL), ảnh hưởng đến toàn bộ hệ thống production và không có workaround. Điều này có nghĩa là sự cố này gây ra tình trạng hệ thống không hoạt động, ví dụ như database sập, API gateway down, hoặc toàn bộ người dùng không thể đăng nhập. Trong trường hợp này, cần phải xử lý ngay lập tức để khôi phục hoạt động của hệ thống.",
       "contexts": [
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ."
       ],
-      "latency": 4.0485,
-      "agent_latency": 2.9786,
-      "retrieval_latency": 0.000707,
-      "judge_latency": 1.0692,
-      "tokens_used": 112,
-      "cost_usd": 1.7e-05,
+      "latency": 9.0359,
+      "agent_latency": 7.5329,
+      "retrieval_latency": 0.000833,
+      "judge_latency": 1.5021,
+      "tokens_used": 108,
+      "cost_usd": 1.6e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -55,7 +55,7 @@
         },
         "quality_signal": {
           "heuristic_score": 4.8,
-          "keyword_overlap": 0.833,
+          "keyword_overlap": 0.917,
           "conflict": false
         }
       },
@@ -68,10 +68,10 @@
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "Q: Hộp thư đến đầy, phải làm gì?\nA: Xóa email cũ hoặc yêu cầu tăng dung lượng qua ticket IT-ACCESS. Dung lượng tiêu chuẩn là 50GB.\n\nQ: Tôi không nhận được email từ bên ngoài?\nA: Kiểm tra thư mục Spam trước. Nếu vẫn không có, tạo ticket P2 kèm địa chỉ email gửi và thời gian gửi."
       ],
-      "latency": 3.1197,
-      "agent_latency": 1.5391,
-      "retrieval_latency": 0.000939,
-      "judge_latency": 1.5796,
+      "latency": 4.6432,
+      "agent_latency": 2.345,
+      "retrieval_latency": 0.002392,
+      "judge_latency": 2.2958,
       "tokens_used": 25,
       "cost_usd": 4e-06,
       "ragas": {
@@ -124,17 +124,17 @@
     },
     {
       "test_case": "Quy trình xử lý một sự cố P1 bắt đầu từ bước nào?",
-      "agent_response": "Quy trình xử lý một sự cố P1 bắt đầu từ bước phản hồi ban đầu (first response). Theo tài liệu, thời gian phản hồi ban đầu cho ticket P1 là 15 phút kể từ khi ticket được tạo. Sau đó, quy trình sẽ tiếp tục với việc xử lý và khắc phục sự cố trong vòng 4 giờ.",
+      "agent_response": "Quy trình xử lý một sự cố P1 bắt đầu từ bước phản hồi ban đầu (first response). Theo tài liệu, thời gian phản hồi ban đầu cho ticket P1 là 15 phút kể từ khi ticket được tạo.",
       "contexts": [
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "v2026.1 (2026-01-15): Cập nhật SLA P1 resolution từ 6 giờ xuống 4 giờ.\nv2025.3 (2025-09-01): Thêm quy trình escalation tự động.\nv2025.1 (2025-03-01): Phiên bản đầu tiên."
       ],
-      "latency": 3.3787,
-      "agent_latency": 2.3392,
-      "retrieval_latency": 0.000543,
-      "judge_latency": 1.0389,
-      "tokens_used": 75,
-      "cost_usd": 1.1e-05,
+      "latency": 4.5895,
+      "agent_latency": 3.2586,
+      "retrieval_latency": 0.002504,
+      "judge_latency": 1.3283,
+      "tokens_used": 55,
+      "cost_usd": 8e-06,
       "ragas": {
         "retrieval": {
           "hit_rate": 0.0,
@@ -151,8 +151,8 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 3.85,
-        "agreement_rate": 1.0,
+        "final_score": 3.41,
+        "agreement_rate": 0.5,
         "cohens_kappa": 0.6875,
         "individual_scores": {
           "gpt-4.1": {
@@ -167,7 +167,7 @@
             "accuracy": 2.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.67
+            "overall_score": 3.0
           }
         },
         "rubrics_merged": {
@@ -176,8 +176,8 @@
           "safety": 5.0
         },
         "quality_signal": {
-          "heuristic_score": 3.9,
-          "keyword_overlap": 0.5,
+          "heuristic_score": 3.2,
+          "keyword_overlap": 0.25,
           "conflict": false
         }
       },
@@ -190,10 +190,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3."
       ],
-      "latency": 3.696,
-      "agent_latency": 2.4929,
-      "retrieval_latency": 0.000691,
-      "judge_latency": 1.2023,
+      "latency": 5.2875,
+      "agent_latency": 3.5955,
+      "retrieval_latency": 0.001016,
+      "judge_latency": 1.6909,
       "tokens_used": 88,
       "cost_usd": 1.3e-05,
       "ragas": {
@@ -212,8 +212,8 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 2.88,
-        "agreement_rate": 0.5,
+        "final_score": 2.99,
+        "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
@@ -221,14 +221,14 @@
             "accuracy": 2.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.7
+            "overall_score": 3.67
           },
           "gpt-4o": {
             "model": "gpt-4o",
             "accuracy": 1.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.0
+            "overall_score": 3.33
           }
         },
         "rubrics_merged": {
@@ -246,16 +246,16 @@
     },
     {
       "test_case": "Thời gian khắc phục sự cố P1 là bao lâu?",
-      "agent_response": "Tài liệu không cung cấp thông tin cụ thể về thời gian khắc phục sự cố P1. Tuy nhiên, sự cố P1 được định nghĩa là khẩn cấp và ảnh hưởng toàn bộ hệ thống production, do đó, thời gian khắc phục thường được ưu tiên cao nhất và cần được xử lý ngay lập tức. Thời gian khắc phục cụ thể sẽ phụ thuộc vào tính chất của sự cố và khả năng của đội ngũ kỹ thuật.",
+      "agent_response": "Tài liệu không cung cấp thông tin cụ thể về thời gian khắc phục sự cố P1. Tuy nhiên, do P1 được định nghĩa là sự cố khẩn cấp ảnh hưởng toàn bộ hệ thống production mà không có workaround, nên thời gian khắc phục thường được ưu tiên cao nhất và cần được xử lý ngay lập tức. Thời gian khắc phục cụ thể sẽ phụ thuộc vào tính chất của sự cố và khả năng của đội ngũ kỹ thuật.",
       "contexts": [
         "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 3.6199,
-      "agent_latency": 2.2026,
-      "retrieval_latency": 0.000681,
-      "judge_latency": 1.4166,
-      "tokens_used": 97,
+      "latency": 6.1522,
+      "agent_latency": 4.1818,
+      "retrieval_latency": 0.001112,
+      "judge_latency": 1.9693,
+      "tokens_used": 102,
       "cost_usd": 1.5e-05,
       "ragas": {
         "retrieval": {
@@ -282,7 +282,7 @@
             "accuracy": 2.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.7
+            "overall_score": 3.0
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -312,10 +312,10 @@
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ."
       ],
-      "latency": 2.1612,
-      "agent_latency": 1.0778,
-      "retrieval_latency": 0.000888,
-      "judge_latency": 1.0825,
+      "latency": 1.9511,
+      "agent_latency": 0.9758,
+      "retrieval_latency": 0.001027,
+      "judge_latency": 0.9742,
       "tokens_used": 32,
       "cost_usd": 5e-06,
       "ragas": {
@@ -373,10 +373,10 @@
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "Q: Hộp thư đến đầy, phải làm gì?\nA: Xóa email cũ hoặc yêu cầu tăng dung lượng qua ticket IT-ACCESS. Dung lượng tiêu chuẩn là 50GB.\n\nQ: Tôi không nhận được email từ bên ngoài?\nA: Kiểm tra thư mục Spam trước. Nếu vẫn không có, tạo ticket P2 kèm địa chỉ email gửi và thời gian gửi."
       ],
-      "latency": 1.8908,
-      "agent_latency": 0.8323,
-      "retrieval_latency": 0.000905,
-      "judge_latency": 1.0576,
+      "latency": 2.4347,
+      "agent_latency": 1.3591,
+      "retrieval_latency": 0.000931,
+      "judge_latency": 1.0747,
       "tokens_used": 30,
       "cost_usd": 4e-06,
       "ragas": {
@@ -395,9 +395,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.43,
+        "final_score": 4.55,
         "agreement_rate": 1.0,
-        "cohens_kappa": 0.6875,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -408,14 +408,14 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 4.0,
+            "accuracy": 5.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 5.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.5,
+          "accuracy": 5.0,
           "professionalism": 5.0,
           "safety": 5.0
         },
@@ -434,10 +434,10 @@
         "v2026.1 (2026-01-15): Cập nhật SLA P1 resolution từ 6 giờ xuống 4 giờ.\nv2025.3 (2025-09-01): Thêm quy trình escalation tự động.\nv2025.1 (2025-03-01): Phiên bản đầu tiên.",
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ."
       ],
-      "latency": 4.6675,
-      "agent_latency": 0.9567,
-      "retrieval_latency": 0.000924,
-      "judge_latency": 3.7099,
+      "latency": 2.0902,
+      "agent_latency": 1.142,
+      "retrieval_latency": 0.002008,
+      "judge_latency": 0.9462,
       "tokens_used": 38,
       "cost_usd": 6e-06,
       "ragas": {
@@ -495,10 +495,10 @@
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ."
       ],
-      "latency": 1.8138,
-      "agent_latency": 0.9436,
-      "retrieval_latency": 0.001761,
-      "judge_latency": 0.8684,
+      "latency": 3.1176,
+      "agent_latency": 2.0197,
+      "retrieval_latency": 0.000921,
+      "judge_latency": 1.097,
       "tokens_used": 39,
       "cost_usd": 6e-06,
       "ragas": {
@@ -556,10 +556,10 @@
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ."
       ],
-      "latency": 2.2752,
-      "agent_latency": 1.3036,
-      "retrieval_latency": 0.000586,
-      "judge_latency": 0.971,
+      "latency": 2.8039,
+      "agent_latency": 1.8043,
+      "retrieval_latency": 0.002365,
+      "judge_latency": 0.9972,
       "tokens_used": 59,
       "cost_usd": 9e-06,
       "ragas": {
@@ -617,10 +617,10 @@
         "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ.",
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
       ],
-      "latency": 2.3417,
-      "agent_latency": 1.3239,
-      "retrieval_latency": 0.002463,
-      "judge_latency": 1.0154,
+      "latency": 3.101,
+      "agent_latency": 1.3199,
+      "retrieval_latency": 0.000926,
+      "judge_latency": 1.7802,
       "tokens_used": 74,
       "cost_usd": 1.1e-05,
       "ragas": {
@@ -678,10 +678,10 @@
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 1.6385,
-      "agent_latency": 0.8444,
-      "retrieval_latency": 0.000812,
-      "judge_latency": 0.7932,
+      "latency": 2.4454,
+      "agent_latency": 1.0219,
+      "retrieval_latency": 0.000858,
+      "judge_latency": 1.4226,
       "tokens_used": 38,
       "cost_usd": 6e-06,
       "ragas": {
@@ -739,10 +739,10 @@
         "v2026.1 (2026-01-15): Cập nhật SLA P1 resolution từ 6 giờ xuống 4 giờ.\nv2025.3 (2025-09-01): Thêm quy trình escalation tự động.\nv2025.1 (2025-03-01): Phiên bản đầu tiên.",
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra."
       ],
-      "latency": 1.8311,
-      "agent_latency": 1.0963,
-      "retrieval_latency": 0.002386,
-      "judge_latency": 0.7324,
+      "latency": 2.5172,
+      "agent_latency": 1.0745,
+      "retrieval_latency": 0.000661,
+      "judge_latency": 1.442,
       "tokens_used": 37,
       "cost_usd": 6e-06,
       "ragas": {
@@ -800,10 +800,10 @@
         "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 3.1331,
-      "agent_latency": 1.6759,
-      "retrieval_latency": 0.000815,
-      "judge_latency": 1.4564,
+      "latency": 3.2802,
+      "agent_latency": 1.4071,
+      "retrieval_latency": 0.00089,
+      "judge_latency": 1.8722,
       "tokens_used": 61,
       "cost_usd": 9e-06,
       "ragas": {
@@ -856,17 +856,17 @@
     },
     {
       "test_case": "Điều kiện nào cần có để khách hàng được hoàn tiền?",
-      "agent_response": "Điều kiện để khách hàng được hoàn tiền không được nêu rõ trong tài liệu bạn cung cấp. Tuy nhiên, có thể suy luận rằng khách hàng cần phải đáp ứng các tiêu chí cụ thể mà CS Agent sẽ xem xét trong bước 2 của quy trình hoàn tiền. Để biết chính xác các điều kiện này, khách hàng nên tham khảo thêm thông tin từ chính sách hoàn tiền của công ty hoặc liên hệ trực tiếp với bộ phận chăm sóc khách hàng.",
+      "agent_response": "Điều kiện để khách hàng được hoàn tiền không được nêu rõ trong tài liệu bạn cung cấp. Tuy nhiên, có thể suy luận rằng khách hàng cần phải đáp ứng các tiêu chí cụ thể mà CS Agent sẽ xem xét trong bước 2 của quy trình hoàn tiền. Để biết chính xác các điều kiện này, khách hàng nên tham khảo thêm thông tin từ chính sách hoàn tiền của công ty hoặc liên hệ với bộ phận chăm sóc khách hàng để được hướng dẫn cụ thể.",
       "contexts": [
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 3.4167,
-      "agent_latency": 1.9918,
-      "retrieval_latency": 0.000453,
-      "judge_latency": 1.4245,
-      "tokens_used": 110,
-      "cost_usd": 1.6e-05,
+      "latency": 4.3953,
+      "agent_latency": 2.9656,
+      "retrieval_latency": 0.000814,
+      "judge_latency": 1.4289,
+      "tokens_used": 114,
+      "cost_usd": 1.7e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 0.0,
@@ -922,10 +922,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 2.7991,
-      "agent_latency": 1.4834,
-      "retrieval_latency": 0.000786,
-      "judge_latency": 1.3149,
+      "latency": 3.2598,
+      "agent_latency": 1.5161,
+      "retrieval_latency": 0.000704,
+      "judge_latency": 1.743,
       "tokens_used": 74,
       "cost_usd": 1.1e-05,
       "ragas": {
@@ -944,27 +944,27 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.62,
+        "final_score": 4.74,
         "agreement_rate": 1.0,
-        "cohens_kappa": 1.0,
+        "cohens_kappa": 0.6875,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
             "accuracy": 4.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 4.7
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 4.0,
+            "accuracy": 5.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 5.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.0,
+          "accuracy": 4.5,
           "professionalism": 5.0,
           "safety": 5.0
         },
@@ -978,15 +978,15 @@
     },
     {
       "test_case": "Quy trình hoàn tiền diễn ra như thế nào?",
-      "agent_response": "Quy trình hoàn tiền diễn ra theo các bước sau:\n\n1. **Yêu cầu hoàn tiền**: Khách hàng cần gửi yêu cầu hoàn tiền trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\n2. **Xem xét điều kiện hoàn tiền**: Đơn hàng sẽ được xem xét để xác định xem có đủ điều kiện hoàn tiền hay không. Các điều kiện bao gồm:\n   - Sản phẩm không thuộc danh mục hàng kỹ thuật số (như license key, subscription).\n   - Đơn hàng không được áp dụng mã giảm giá đặc biệt trong chương trình khuyến mãi Flash Sale.\n   - Sản phẩm chưa được kích hoạt hoặc đăng ký tài khoản.\n\n3. **Phương thức hoàn tiền**: Nếu đơn hàng đủ điều kiện hoàn tiền, khách hàng sẽ nhận được hoàn tiền qua một trong hai phương thức:\n   - **Hoàn tiền qua phương thức thanh toán gốc**: Áp dụng trong 100% trường hợp đủ điều kiện.\n   - **Hoàn tiền qua credit nội bộ (store credit)**: Khách hàng có thể chọn nhận store credit với giá trị 110% so với số tiền hoàn.\n\n4. **Thực hiện hoàn tiền**: Sau khi xác nhận yêu cầu và phương thức hoàn tiền, quy trình hoàn tiền sẽ được thực hiện theo phương thức đã chọn.\n\nKhách hàng nên lưu ý các điều kiện và thời gian để đảm bảo yêu cầu hoàn tiền được xử lý thành công.",
+      "agent_response": "Quy trình hoàn tiền diễn ra theo các bước sau:\n\n1. **Yêu cầu hoàn tiền**: Khách hàng cần gửi yêu cầu hoàn tiền trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\n2. **Xem xét điều kiện hoàn tiền**: Đơn hàng sẽ được xem xét để xác định xem có đủ điều kiện hoàn tiền hay không. Các điều kiện bao gồm:\n   - Sản phẩm không thuộc danh mục hàng kỹ thuật số (như license key, subscription).\n   - Đơn hàng không được áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n   - Sản phẩm chưa được kích hoạt hoặc đăng ký tài khoản.\n\n3. **Phương thức hoàn tiền**: Nếu đơn hàng đủ điều kiện hoàn tiền, khách hàng sẽ nhận được hoàn tiền qua một trong hai phương thức:\n   - Hoàn tiền qua phương thức thanh toán gốc (áp dụng trong 100% trường hợp đủ điều kiện).\n   - Hoàn tiền qua credit nội bộ (store credit), trong đó khách hàng có thể chọn nhận store credit với giá trị 110% so với số tiền hoàn.\n\n4. **Thực hiện hoàn tiền**: Sau khi xác nhận yêu cầu và phương thức hoàn tiền, quy trình hoàn tiền sẽ được thực hiện theo phương thức đã chọn.\n\nKhách hàng nên lưu ý các điều kiện và thời gian để đảm bảo yêu cầu hoàn tiền được xử lý thành công.",
       "contexts": [
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 6.1433,
-      "agent_latency": 5.2005,
-      "retrieval_latency": 0.00079,
-      "judge_latency": 0.942,
+      "latency": 6.8351,
+      "agent_latency": 5.2643,
+      "retrieval_latency": 0.002302,
+      "judge_latency": 1.5685,
       "tokens_used": 296,
       "cost_usd": 4.4e-05,
       "ragas": {
@@ -1044,10 +1044,10 @@
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 2.7882,
-      "agent_latency": 1.7782,
-      "retrieval_latency": 0.002372,
-      "judge_latency": 1.0076,
+      "latency": 2.9969,
+      "agent_latency": 1.4429,
+      "retrieval_latency": 0.000888,
+      "judge_latency": 1.5531,
       "tokens_used": 82,
       "cost_usd": 1.2e-05,
       "ragas": {
@@ -1105,10 +1105,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 2.0159,
-      "agent_latency": 1.0919,
-      "retrieval_latency": 0.001863,
-      "judge_latency": 0.9221,
+      "latency": 2.5895,
+      "agent_latency": 0.9309,
+      "retrieval_latency": 0.002493,
+      "judge_latency": 1.6561,
       "tokens_used": 35,
       "cost_usd": 5e-06,
       "ragas": {
@@ -1167,10 +1167,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 2.1359,
-      "agent_latency": 1.1132,
-      "retrieval_latency": 0.001241,
-      "judge_latency": 1.0215,
+      "latency": 2.8997,
+      "agent_latency": 1.3332,
+      "retrieval_latency": 0.00222,
+      "judge_latency": 1.5643,
       "tokens_used": 62,
       "cost_usd": 9e-06,
       "ragas": {
@@ -1223,16 +1223,16 @@
     },
     {
       "test_case": "Khách hàng muốn hoàn tiền cho sản phẩm kỹ thuật số, họ có thể làm gì?",
-      "agent_response": "Khách hàng không thể hoàn tiền cho sản phẩm kỹ thuật số (như license key hoặc subscription) vì đây là một trong những ngoại lệ không được hoàn tiền theo quy định. Nếu khách hàng đã mua sản phẩm thuộc danh mục này, họ sẽ không có lựa chọn nào để yêu cầu hoàn tiền.",
+      "agent_response": "Khách hàng không thể hoàn tiền cho sản phẩm kỹ thuật số, vì sản phẩm thuộc danh mục này không đủ điều kiện hoàn tiền theo quy định đã nêu. Nếu khách hàng đã mua sản phẩm kỹ thuật số (như license key hoặc subscription), họ sẽ không thể yêu cầu hoàn tiền.",
       "contexts": [
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn."
       ],
-      "latency": 2.5675,
-      "agent_latency": 1.6647,
-      "retrieval_latency": 0.001085,
-      "judge_latency": 0.9017,
-      "tokens_used": 82,
+      "latency": 2.8712,
+      "agent_latency": 1.6176,
+      "retrieval_latency": 0.000977,
+      "judge_latency": 1.2526,
+      "tokens_used": 80,
       "cost_usd": 1.2e-05,
       "ragas": {
         "retrieval": {
@@ -1284,17 +1284,17 @@
     },
     {
       "test_case": "Cần làm gì nếu muốn yêu cầu hoàn tiền?",
-      "agent_response": "Để yêu cầu hoàn tiền, bạn cần thực hiện các bước sau:\n\n1. **Gửi yêu cầu**: Truy cập vào hệ thống ticket nội bộ và gửi yêu cầu hoàn tiền với category \"Refund Request\".\n2. **Chờ xem xét**: Đợi CS Agent xem xét yêu cầu của bạn trong vòng 1 ngày làm việc. Họ sẽ xác nhận xem yêu cầu của bạn có đủ điều kiện hay không.\n3. **Chuyển yêu cầu**: Nếu yêu cầu của bạn đủ điều kiện, CS Agent sẽ chuyển nó sang Finance Team để xử lý hoàn tiền.\n4. **Nhận thông báo**: Finance Team sẽ xử lý yêu cầu trong 3-5 ngày làm việc và thông báo kết quả cho bạn.\n\nLưu ý rằng bạn cần đảm bảo rằng sản phẩm của bạn đáp ứng đủ các điều kiện hoàn tiền, bao gồm:\n- Sản phẩm bị lỗi do nhà sản xuất.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
+      "agent_response": "Để yêu cầu hoàn tiền, bạn cần thực hiện các bước sau:\n\n1. **Gửi yêu cầu**: Truy cập vào hệ thống ticket nội bộ và gửi yêu cầu hoàn tiền với category \"Refund Request\".\n2. **Chờ xem xét**: Đợi CS Agent xem xét yêu cầu của bạn trong vòng 1 ngày làm việc. Họ sẽ xác nhận xem yêu cầu của bạn có đủ điều kiện hay không.\n3. **Chuyển yêu cầu**: Nếu yêu cầu của bạn đủ điều kiện, CS Agent sẽ chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\n4. **Nhận thông báo**: Finance Team sẽ xử lý yêu cầu trong 3-5 ngày làm việc và thông báo kết quả cho bạn.\n\nLưu ý rằng bạn cần đảm bảo rằng sản phẩm của bạn bị lỗi do nhà sản xuất, yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng, và sản phẩm chưa được sử dụng hoặc chưa bị mở seal.",
       "contexts": [
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 5.307,
-      "agent_latency": 4.0201,
-      "retrieval_latency": 0.00069,
-      "judge_latency": 1.2861,
-      "tokens_used": 209,
-      "cost_usd": 3.1e-05,
+      "latency": 4.7935,
+      "agent_latency": 3.8593,
+      "retrieval_latency": 0.000774,
+      "judge_latency": 0.9335,
+      "tokens_used": 196,
+      "cost_usd": 2.9e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -1311,16 +1311,16 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.38,
-        "agreement_rate": 0.5,
+        "final_score": 4.25,
+        "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 4.0,
+            "accuracy": 3.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 4.3
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -1331,13 +1331,13 @@
           }
         },
         "rubrics_merged": {
-          "accuracy": 3.5,
+          "accuracy": 3.0,
           "professionalism": 4.5,
           "safety": 5.0
         },
         "quality_signal": {
           "heuristic_score": 4.5,
-          "keyword_overlap": 0.75,
+          "keyword_overlap": 0.667,
           "conflict": false
         }
       },
@@ -1350,10 +1350,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 2.0726,
-      "agent_latency": 0.9496,
-      "retrieval_latency": 0.000971,
-      "judge_latency": 1.122,
+      "latency": 2.1521,
+      "agent_latency": 1.3021,
+      "retrieval_latency": 0.002325,
+      "judge_latency": 0.8477,
       "tokens_used": 47,
       "cost_usd": 7e-06,
       "ragas": {
@@ -1406,15 +1406,15 @@
     },
     {
       "test_case": "Khách hàng cần liên hệ với ai nếu có vấn đề về hoàn tiền?",
-      "agent_response": "Khách hàng cần liên hệ với CS Agent (Đại diện dịch vụ khách hàng) nếu có vấn đề về hoàn tiền. Họ có thể gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\" để được hỗ trợ.",
+      "agent_response": "Khách hàng cần liên hệ với CS Agent (Đại diện Dịch vụ Khách hàng) nếu có vấn đề về hoàn tiền. Họ có thể gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\" để được hỗ trợ.",
       "contexts": [
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 2.4305,
-      "agent_latency": 1.2386,
-      "retrieval_latency": 0.000769,
-      "judge_latency": 1.1911,
+      "latency": 3.1441,
+      "agent_latency": 1.8288,
+      "retrieval_latency": 0.00088,
+      "judge_latency": 1.3144,
       "tokens_used": 61,
       "cost_usd": 9e-06,
       "ragas": {
@@ -1433,7 +1433,68 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 3.8,
+        "final_score": 4.03,
+        "agreement_rate": 1.0,
+        "cohens_kappa": 0.6875,
+        "individual_scores": {
+          "gpt-4.1": {
+            "model": "gpt-4.1",
+            "accuracy": 3.0,
+            "professionalism": 4.0,
+            "safety": 5.0,
+            "overall_score": 4.0
+          },
+          "gpt-4o": {
+            "model": "gpt-4o",
+            "accuracy": 2.0,
+            "professionalism": 4.0,
+            "safety": 5.0,
+            "overall_score": 3.67
+          }
+        },
+        "rubrics_merged": {
+          "accuracy": 2.5,
+          "professionalism": 4.0,
+          "safety": 5.0
+        },
+        "quality_signal": {
+          "heuristic_score": 4.5,
+          "keyword_overlap": 0.615,
+          "conflict": false
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "test_case": "Giờ làm việc để xử lý yêu cầu hoàn tiền là khi nào?",
+      "agent_response": "Giờ làm việc để xử lý yêu cầu hoàn tiền theo quy trình đã nêu trong tài liệu là trong giờ làm việc thông thường, thường là từ thứ Hai đến thứ Sáu, trừ các ngày lễ. Cụ thể, quy trình xử lý yêu cầu hoàn tiền diễn ra như sau:\n\n1. **Bước 2**: CS Agent xem xét yêu cầu trong vòng 1 ngày làm việc. Điều này có nghĩa là yêu cầu sẽ được xem xét trong khoảng thời gian từ 8:00 đến 17:00 (hoặc giờ làm việc cụ thể của công ty) trong các ngày làm việc.\n   \n2. **Bước 3**: Nếu yêu cầu đủ điều kiện, nó sẽ được chuyển sang Finance Team để xử lý. Finance Team sẽ xử lý trong 3-5 ngày làm việc, cũng trong khung giờ làm việc tương tự.\n\nDo đó, yêu cầu hoàn tiền sẽ được xử lý trong giờ làm việc của các ngày làm việc.",
+      "contexts": [
+        "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
+        "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
+      ],
+      "latency": 9.7517,
+      "agent_latency": 3.8501,
+      "retrieval_latency": 0.000828,
+      "judge_latency": 5.9008,
+      "tokens_used": 187,
+      "cost_usd": 2.8e-05,
+      "ragas": {
+        "retrieval": {
+          "hit_rate": 0.0,
+          "mrr": 0.0,
+          "expected_ids": [
+            "policy_refund_v4_c24"
+          ],
+          "retrieved_ids": [
+            "policy_refund_v4_c22",
+            "sla_p1_2026_c26"
+          ]
+        },
+        "faithfulness": 0.0,
+        "relevancy": 0.0
+      },
+      "judge": {
+        "final_score": 3.5,
         "agreement_rate": 0.5,
         "cohens_kappa": 0.6875,
         "individual_scores": {
@@ -1458,67 +1519,6 @@
           "safety": 5.0
         },
         "quality_signal": {
-          "heuristic_score": 4.5,
-          "keyword_overlap": 0.615,
-          "conflict": false
-        }
-      },
-      "status": "pass"
-    },
-    {
-      "test_case": "Giờ làm việc để xử lý yêu cầu hoàn tiền là khi nào?",
-      "agent_response": "Giờ làm việc để xử lý yêu cầu hoàn tiền theo quy trình đã nêu trong tài liệu là từ thứ Hai đến thứ Sáu, trong khung giờ làm việc thông thường. Thời gian cụ thể có thể khác nhau tùy thuộc vào quy định của công ty, nhưng thường là từ 8:00 sáng đến 5:00 chiều. \n\nTrong quy trình hoàn tiền, CS Agent sẽ xem xét yêu cầu trong vòng 1 ngày làm việc, và Finance Team sẽ xử lý trong 3-5 ngày làm việc sau khi nhận được yêu cầu từ CS Agent. Do đó, tất cả các bước này đều phải được thực hiện trong giờ làm việc.",
-      "contexts": [
-        "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
-        "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
-      ],
-      "latency": 4.0656,
-      "agent_latency": 2.8804,
-      "retrieval_latency": 0.000844,
-      "judge_latency": 1.1844,
-      "tokens_used": 137,
-      "cost_usd": 2.1e-05,
-      "ragas": {
-        "retrieval": {
-          "hit_rate": 0.0,
-          "mrr": 0.0,
-          "expected_ids": [
-            "policy_refund_v4_c24"
-          ],
-          "retrieved_ids": [
-            "policy_refund_v4_c22",
-            "sla_p1_2026_c26"
-          ]
-        },
-        "faithfulness": 0.0,
-        "relevancy": 0.0
-      },
-      "judge": {
-        "final_score": 3.85,
-        "agreement_rate": 1.0,
-        "cohens_kappa": 1.0,
-        "individual_scores": {
-          "gpt-4.1": {
-            "model": "gpt-4.1",
-            "accuracy": 3.0,
-            "professionalism": 4.0,
-            "safety": 5.0,
-            "overall_score": 4.0
-          },
-          "gpt-4o": {
-            "model": "gpt-4o",
-            "accuracy": 3.0,
-            "professionalism": 4.0,
-            "safety": 5.0,
-            "overall_score": 4.0
-          }
-        },
-        "rubrics_merged": {
-          "accuracy": 3.0,
-          "professionalism": 4.0,
-          "safety": 5.0
-        },
-        "quality_signal": {
           "heuristic_score": 3.5,
           "keyword_overlap": 0.5,
           "conflict": false
@@ -1533,10 +1533,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 2.3132,
-      "agent_latency": 1.368,
-      "retrieval_latency": 0.000734,
-      "judge_latency": 0.9444,
+      "latency": 3.6552,
+      "agent_latency": 2.0603,
+      "retrieval_latency": 0.000967,
+      "judge_latency": 1.5939,
       "tokens_used": 84,
       "cost_usd": 1.3e-05,
       "ragas": {
@@ -1594,10 +1594,10 @@
         "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 2.3176,
-      "agent_latency": 1.0562,
-      "retrieval_latency": 0.000592,
-      "judge_latency": 1.2608,
+      "latency": 2.8146,
+      "agent_latency": 1.7567,
+      "retrieval_latency": 0.002311,
+      "judge_latency": 1.0556,
       "tokens_used": 69,
       "cost_usd": 1e-05,
       "ragas": {
@@ -1616,16 +1616,16 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.51,
+        "final_score": 4.38,
         "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
             "accuracy": 4.0,
-            "professionalism": 5.0,
+            "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 4.7
+            "overall_score": 4.33
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -1637,7 +1637,7 @@
         },
         "rubrics_merged": {
           "accuracy": 4.0,
-          "professionalism": 4.5,
+          "professionalism": 4.0,
           "safety": 5.0
         },
         "quality_signal": {
@@ -1655,10 +1655,10 @@
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 1.7819,
-      "agent_latency": 0.7746,
-      "retrieval_latency": 0.001023,
-      "judge_latency": 1.0063,
+      "latency": 3.0331,
+      "agent_latency": 1.2957,
+      "retrieval_latency": 0.002289,
+      "judge_latency": 1.7351,
       "tokens_used": 40,
       "cost_usd": 6e-06,
       "ragas": {
@@ -1716,10 +1716,10 @@
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 2.7857,
-      "agent_latency": 0.8804,
-      "retrieval_latency": 0.001098,
-      "judge_latency": 1.9042,
+      "latency": 3.4338,
+      "agent_latency": 1.8624,
+      "retrieval_latency": 0.001154,
+      "judge_latency": 1.5702,
       "tokens_used": 51,
       "cost_usd": 8e-06,
       "ragas": {
@@ -1772,17 +1772,17 @@
     },
     {
       "test_case": "Quy trình nào được thực hiện khi cần thay đổi quyền hệ thống ngoài quy trình thông thường?",
-      "agent_response": "Khi cần thay đổi quyền hệ thống ngoài quy trình thông thường, quy trình escalation khẩn cấp sẽ được thực hiện. Cụ thể như sau:\n\n1. On-call IT Admin có thể cấp quyền tạm thời (tối đa 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền sẽ bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "agent_response": "Khi cần thay đổi quyền hệ thống ngoài quy trình thông thường, quy trình escalation khẩn cấp sẽ được thực hiện. Cụ thể, quy trình này bao gồm các bước sau:\n\n1. On-call IT Admin có thể cấp quyền tạm thời (tối đa 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền sẽ bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
       "contexts": [
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn."
       ],
-      "latency": 2.9757,
-      "agent_latency": 2.0481,
-      "retrieval_latency": 0.000951,
-      "judge_latency": 0.9266,
-      "tokens_used": 116,
-      "cost_usd": 1.7e-05,
+      "latency": 4.4351,
+      "agent_latency": 2.5078,
+      "retrieval_latency": 0.0009,
+      "judge_latency": 1.9263,
+      "tokens_used": 123,
+      "cost_usd": 1.8e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -1799,28 +1799,28 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.73,
-        "agreement_rate": 1.0,
-        "cohens_kappa": 0.6875,
+        "final_score": 4.38,
+        "agreement_rate": 0.5,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 5.0,
-            "professionalism": 5.0,
-            "safety": 5.0,
-            "overall_score": 5.0
-          },
-          "gpt-4o": {
-            "model": "gpt-4o",
             "accuracy": 4.0,
             "professionalism": 5.0,
             "safety": 5.0,
             "overall_score": 4.67
+          },
+          "gpt-4o": {
+            "model": "gpt-4o",
+            "accuracy": 3.0,
+            "professionalism": 4.0,
+            "safety": 5.0,
+            "overall_score": 4.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.5,
-          "professionalism": 5.0,
+          "accuracy": 3.5,
+          "professionalism": 4.5,
           "safety": 5.0
         },
         "quality_signal": {
@@ -1838,10 +1838,10 @@
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 3.1397,
-      "agent_latency": 1.3497,
-      "retrieval_latency": 0.000875,
-      "judge_latency": 1.7891,
+      "latency": 2.2229,
+      "agent_latency": 0.7439,
+      "retrieval_latency": 0.002397,
+      "judge_latency": 1.4765,
       "tokens_used": 27,
       "cost_usd": 4e-06,
       "ragas": {
@@ -1899,10 +1899,10 @@
         "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 1.903,
-      "agent_latency": 0.8386,
-      "retrieval_latency": 0.000744,
-      "judge_latency": 1.0637,
+      "latency": 2.6581,
+      "agent_latency": 0.9127,
+      "retrieval_latency": 0.000809,
+      "judge_latency": 1.7446,
       "tokens_used": 42,
       "cost_usd": 6e-06,
       "ragas": {
@@ -1960,10 +1960,10 @@
         "IT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn."
       ],
-      "latency": 2.1619,
-      "agent_latency": 0.7413,
-      "retrieval_latency": 0.001566,
-      "judge_latency": 1.419,
+      "latency": 2.9756,
+      "agent_latency": 1.8512,
+      "retrieval_latency": 0.000837,
+      "judge_latency": 1.1236,
       "tokens_used": 25,
       "cost_usd": 4e-06,
       "ragas": {
@@ -2021,10 +2021,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc."
       ],
-      "latency": 4.5031,
-      "agent_latency": 1.2491,
-      "retrieval_latency": 0.001066,
-      "judge_latency": 3.253,
+      "latency": 2.6976,
+      "agent_latency": 1.7079,
+      "retrieval_latency": 0.002262,
+      "judge_latency": 0.9874,
       "tokens_used": 45,
       "cost_usd": 7e-06,
       "ragas": {
@@ -2082,10 +2082,10 @@
         "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 2.7125,
-      "agent_latency": 1.0777,
-      "retrieval_latency": 0.001237,
-      "judge_latency": 1.6335,
+      "latency": 1.8175,
+      "agent_latency": 0.9038,
+      "retrieval_latency": 0.000805,
+      "judge_latency": 0.9129,
       "tokens_used": 41,
       "cost_usd": 6e-06,
       "ragas": {
@@ -2143,10 +2143,10 @@
         "IT Security thực hiện access review mỗi 6 tháng.\nMọi bất thường phải được báo cáo lên CISO trong vòng 24 giờ.",
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra."
       ],
-      "latency": 2.2256,
-      "agent_latency": 0.8769,
-      "retrieval_latency": 0.000814,
-      "judge_latency": 1.3479,
+      "latency": 2.091,
+      "agent_latency": 0.9781,
+      "retrieval_latency": 0.000833,
+      "judge_latency": 1.1121,
       "tokens_used": 39,
       "cost_usd": 6e-06,
       "ragas": {
@@ -2199,17 +2199,17 @@
     },
     {
       "test_case": "Nếu một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như thế nào?",
-      "agent_response": "Nếu một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như sau:\n\n1. **On-call IT Admin** sẽ cấp quyền tạm thời cho nhân viên đó, nhưng chỉ sau khi nhận được sự phê duyệt bằng lời từ **Tech Lead**.\n2. Quyền tạm thời này chỉ có hiệu lực tối đa trong **24 giờ**.\n3. Sau 24 giờ, nếu không có ticket chính thức được tạo ra, quyền sẽ bị thu hồi tự động.\n4. Tất cả các quyền tạm thời được cấp phải được ghi log vào hệ thống **Security Audit** để đảm bảo tính minh bạch và theo dõi.\n\nQuy trình này đảm bảo rằng quyền truy cập được cấp một cách nhanh chóng trong tình huống khẩn cấp, nhưng vẫn tuân thủ các quy định về bảo mật và quản lý quyền truy cập.",
+      "agent_response": "Nếu một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như sau:\n\n1. **On-call IT Admin** sẽ cấp quyền tạm thời cho nhân viên đó, nhưng chỉ sau khi nhận được sự phê duyệt bằng lời từ **Tech Lead**.\n2. Quyền tạm thời này sẽ có hiệu lực tối đa trong **24 giờ**.\n3. Sau 24 giờ, nếu không có ticket chính thức được tạo ra, quyền sẽ bị thu hồi tự động.\n4. Tất cả các quyền tạm thời được cấp phải được ghi log vào hệ thống **Security Audit** để đảm bảo tính minh bạch và theo dõi.\n\nQuy trình này đảm bảo rằng quyền truy cập được cấp một cách nhanh chóng trong tình huống khẩn cấp, đồng thời vẫn tuân thủ các quy định về bảo mật.",
       "contexts": [
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor."
       ],
-      "latency": 5.9386,
-      "agent_latency": 3.6331,
-      "retrieval_latency": 0.000782,
-      "judge_latency": 2.3048,
-      "tokens_used": 189,
-      "cost_usd": 2.8e-05,
+      "latency": 4.6197,
+      "agent_latency": 3.3791,
+      "retrieval_latency": 0.000636,
+      "judge_latency": 1.2399,
+      "tokens_used": 183,
+      "cost_usd": 2.7e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -2226,7 +2226,7 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.62,
+        "final_score": 4.63,
         "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
@@ -2235,7 +2235,7 @@
             "accuracy": 4.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 4.7
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -2260,17 +2260,17 @@
     },
     {
       "test_case": "Hệ thống nào được sử dụng để quản lý ticket yêu cầu cấp quyền?",
-      "agent_response": "Hệ thống được sử dụng để quản lý ticket yêu cầu cấp quyền không được nêu rõ trong tài liệu bạn cung cấp. Tuy nhiên, có thể suy luận rằng nó sẽ tương tự như hệ thống ticket nội bộ mà khách hàng sử dụng để gửi yêu cầu hoàn tiền, vì cả hai quy trình đều liên quan đến việc quản lý yêu cầu và phê duyệt. Nếu bạn cần thông tin cụ thể hơn, có thể cần tham khảo thêm tài liệu hoặc quy trình nội bộ của tổ chức.",
+      "agent_response": "Hệ thống được sử dụng để quản lý ticket yêu cầu cấp quyền không được nêu rõ trong tài liệu bạn cung cấp. Tuy nhiên, có thể suy luận rằng nó sẽ tương tự như hệ thống ticket nội bộ mà khách hàng sử dụng để gửi yêu cầu hoàn tiền, vì cả hai quy trình đều liên quan đến việc quản lý yêu cầu và phê duyệt. Nếu bạn cần thông tin cụ thể hơn về hệ thống này, bạn có thể cần tham khảo thêm tài liệu hoặc quy trình nội bộ của tổ chức.",
       "contexts": [
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 3.2282,
-      "agent_latency": 2.1773,
-      "retrieval_latency": 0.000865,
-      "judge_latency": 1.05,
-      "tokens_used": 115,
-      "cost_usd": 1.7e-05,
+      "latency": 3.8958,
+      "agent_latency": 2.8705,
+      "retrieval_latency": 0.000922,
+      "judge_latency": 1.0244,
+      "tokens_used": 120,
+      "cost_usd": 1.8e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 0.0,
@@ -2287,7 +2287,7 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 2.87,
+        "final_score": 2.88,
         "agreement_rate": 0.5,
         "cohens_kappa": 1.0,
         "individual_scores": {
@@ -2296,7 +2296,7 @@
             "accuracy": 2.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.67
+            "overall_score": 3.7
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -2326,10 +2326,10 @@
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 2.6226,
-      "agent_latency": 0.8338,
-      "retrieval_latency": 0.000959,
-      "judge_latency": 1.7878,
+      "latency": 2.5596,
+      "agent_latency": 0.9697,
+      "retrieval_latency": 0.001006,
+      "judge_latency": 1.5889,
       "tokens_used": 33,
       "cost_usd": 5e-06,
       "ragas": {
@@ -2387,10 +2387,10 @@
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 2.0898,
-      "agent_latency": 1.1407,
-      "retrieval_latency": 0.000755,
-      "judge_latency": 0.9484,
+      "latency": 2.5583,
+      "agent_latency": 1.6521,
+      "retrieval_latency": 0.00258,
+      "judge_latency": 0.9036,
       "tokens_used": 46,
       "cost_usd": 7e-06,
       "ragas": {
@@ -2448,10 +2448,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 2.4826,
-      "agent_latency": 1.1353,
-      "retrieval_latency": 0.000915,
-      "judge_latency": 1.3464,
+      "latency": 1.8596,
+      "agent_latency": 1.0177,
+      "retrieval_latency": 0.000811,
+      "judge_latency": 0.8411,
       "tokens_used": 32,
       "cost_usd": 5e-06,
       "ragas": {
@@ -2509,10 +2509,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 2.8572,
-      "agent_latency": 1.4252,
-      "retrieval_latency": 0.002495,
-      "judge_latency": 1.4295,
+      "latency": 2.5943,
+      "agent_latency": 1.2709,
+      "retrieval_latency": 0.000733,
+      "judge_latency": 1.3226,
       "tokens_used": 56,
       "cost_usd": 8e-06,
       "ragas": {
@@ -2570,10 +2570,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 2.2989,
-      "agent_latency": 1.1601,
-      "retrieval_latency": 0.000786,
-      "judge_latency": 1.138,
+      "latency": 2.5998,
+      "agent_latency": 1.5329,
+      "retrieval_latency": 0.001562,
+      "judge_latency": 1.0653,
       "tokens_used": 54,
       "cost_usd": 8e-06,
       "ragas": {
@@ -2631,10 +2631,10 @@
         "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 2.3975,
-      "agent_latency": 1.1233,
-      "retrieval_latency": 0.000818,
-      "judge_latency": 1.2734,
+      "latency": 2.2207,
+      "agent_latency": 0.7204,
+      "retrieval_latency": 0.004798,
+      "judge_latency": 1.4955,
       "tokens_used": 28,
       "cost_usd": 4e-06,
       "ragas": {
@@ -2692,10 +2692,10 @@
         "3.1 Điều kiện làm thêm:\nLàm thêm giờ phải được Line Manager phê duyệt trước bằng văn bản.\n\n3.2 Hệ số lương làm thêm:\n- Ngày thường: 150% lương giờ tiêu chuẩn.\n- Ngày cuối tuần: 200% lương giờ tiêu chuẩn.\n- Ngày lễ: 300% lương giờ tiêu chuẩn.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 1.9914,
-      "agent_latency": 1.0722,
-      "retrieval_latency": 0.000852,
-      "judge_latency": 0.9183,
+      "latency": 2.6396,
+      "agent_latency": 0.9013,
+      "retrieval_latency": 0.000737,
+      "judge_latency": 1.7376,
       "tokens_used": 48,
       "cost_usd": 7e-06,
       "ragas": {
@@ -2753,10 +2753,10 @@
         "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 2.1313,
-      "agent_latency": 0.928,
-      "retrieval_latency": 0.002435,
-      "judge_latency": 1.2008,
+      "latency": 2.122,
+      "agent_latency": 0.9651,
+      "retrieval_latency": 0.002353,
+      "judge_latency": 1.1545,
       "tokens_used": 40,
       "cost_usd": 6e-06,
       "ragas": {
@@ -2809,17 +2809,17 @@
     },
     {
       "test_case": "Nhân viên cần có yêu cầu gì khi làm việc từ xa?",
-      "agent_response": "Khi làm việc từ xa, nhân viên cần có các yêu cầu sau:\n\n1. **Phê duyệt lịch remote**: Nhân viên phải được Team Lead phê duyệt lịch làm việc từ xa qua HR Portal.\n\n2. **Kết nối VPN**: Nhân viên phải sử dụng kết nối VPN khi làm việc với hệ thống nội bộ để đảm bảo an toàn thông tin.\n\n3. **Camera bật trong các cuộc họp**: Nhân viên cần bật camera trong các cuộc họp team để đảm bảo sự tương tác và giao tiếp hiệu quả. \n\nNgoài ra, nhân viên cũng cần lưu ý rằng họ chỉ có thể làm remote tối đa 2 ngày/tuần sau khi đã hoàn thành thời gian thử việc (probation period).",
+      "agent_response": "Khi làm việc từ xa, nhân viên cần có các yêu cầu sau:\n\n1. **Phê duyệt lịch remote**: Nhân viên phải được Team Lead phê duyệt lịch làm việc từ xa qua HR Portal.\n\n2. **Kết nối VPN**: Nhân viên phải đảm bảo kết nối VPN khi làm việc với hệ thống nội bộ để bảo mật thông tin.\n\n3. **Camera bật trong các cuộc họp**: Nhân viên cần bật camera trong các cuộc họp team để đảm bảo sự tương tác và giao tiếp hiệu quả. \n\nNgoài ra, nhân viên cũng cần lưu ý rằng họ chỉ có thể làm remote tối đa 2 ngày/tuần sau khi đã hoàn thành thời gian thử việc (probation period).",
       "contexts": [
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team."
       ],
-      "latency": 4.3126,
-      "agent_latency": 3.1928,
-      "retrieval_latency": 0.000682,
-      "judge_latency": 1.1192,
-      "tokens_used": 151,
-      "cost_usd": 2.3e-05,
+      "latency": 5.6568,
+      "agent_latency": 4.6713,
+      "retrieval_latency": 0.002399,
+      "judge_latency": 0.9831,
+      "tokens_used": 149,
+      "cost_usd": 2.2e-05,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -2836,9 +2836,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.25,
-        "agreement_rate": 1.0,
-        "cohens_kappa": 1.0,
+        "final_score": 2.05,
+        "agreement_rate": 0.0,
+        "cohens_kappa": 0.0625,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -2849,24 +2849,24 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 3.0,
-            "professionalism": 4.0,
-            "safety": 5.0,
-            "overall_score": 4.0
+            "accuracy": 1.0,
+            "professionalism": 1.0,
+            "safety": 1.0,
+            "overall_score": 1.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 3.0,
-          "professionalism": 4.5,
-          "safety": 5.0
+          "accuracy": 2.0,
+          "professionalism": 3.0,
+          "safety": 3.0
         },
         "quality_signal": {
           "heuristic_score": 4.5,
           "keyword_overlap": 0.909,
-          "conflict": false
+          "conflict": true
         }
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "test_case": "Nếu nhân viên không được phê duyệt nghỉ phép, họ sẽ nhận thông báo qua đâu?",
@@ -2875,10 +2875,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 1.8472,
-      "agent_latency": 1.0373,
-      "retrieval_latency": 0.00075,
-      "judge_latency": 0.8092,
+      "latency": 2.0566,
+      "agent_latency": 1.1255,
+      "retrieval_latency": 0.001064,
+      "judge_latency": 0.93,
       "tokens_used": 37,
       "cost_usd": 6e-06,
       "ragas": {
@@ -2936,10 +2936,10 @@
         "Email: hr@company.internal\nHotline: ext. 2000\nHR Portal: https://hr.company.internal\nGiờ làm việc: Thứ 2 - Thứ 6, 8:30 - 17:30",
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
       ],
-      "latency": 3.2054,
-      "agent_latency": 2.1632,
-      "retrieval_latency": 0.000938,
-      "judge_latency": 1.0413,
+      "latency": 2.89,
+      "agent_latency": 1.0754,
+      "retrieval_latency": 0.001992,
+      "judge_latency": 1.8126,
       "tokens_used": 25,
       "cost_usd": 4e-06,
       "ragas": {
@@ -2992,16 +2992,16 @@
     },
     {
       "test_case": "Có thể liên hệ HR qua email nào?",
-      "agent_response": "Tài liệu không cung cấp thông tin cụ thể về địa chỉ email liên hệ với HR. Bạn có thể kiểm tra trên hệ thống HR Portal hoặc liên hệ với bộ phận Helpdesk để biết thêm chi tiết.",
+      "agent_response": "Tài liệu không cung cấp thông tin cụ thể về địa chỉ email của HR. Bạn có thể kiểm tra trên hệ thống HR Portal hoặc liên hệ với bộ phận hỗ trợ để biết thêm chi tiết.",
       "contexts": [
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn."
       ],
-      "latency": 3.4317,
-      "agent_latency": 1.6232,
-      "retrieval_latency": 0.002523,
-      "judge_latency": 1.8059,
-      "tokens_used": 53,
+      "latency": 3.8551,
+      "agent_latency": 2.3369,
+      "retrieval_latency": 0.002211,
+      "judge_latency": 1.5159,
+      "tokens_used": 51,
       "cost_usd": 8e-06,
       "ragas": {
         "retrieval": {
@@ -3019,7 +3019,7 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 3.12,
+        "final_score": 3.0,
         "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
@@ -3032,14 +3032,14 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 2.0,
+            "accuracy": 1.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.67
+            "overall_score": 3.33
           }
         },
         "rubrics_merged": {
-          "accuracy": 2.0,
+          "accuracy": 1.5,
           "professionalism": 4.0,
           "safety": 5.0
         },
@@ -3061,10 +3061,10 @@
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 1.8096,
-      "agent_latency": 0.7446,
-      "retrieval_latency": 0.001165,
-      "judge_latency": 1.0638,
+      "latency": 14.0325,
+      "agent_latency": 0.8557,
+      "retrieval_latency": 0.00077,
+      "judge_latency": 13.1761,
       "tokens_used": 22,
       "cost_usd": 3e-06,
       "ragas": {
@@ -3091,7 +3091,7 @@
           "gpt-4.1": {
             "model": "gpt-4.1",
             "accuracy": 1.0,
-            "professionalism": 4.0,
+            "professionalism": 3.0,
             "safety": 5.0,
             "overall_score": 3.0
           },
@@ -3105,7 +3105,7 @@
         },
         "rubrics_merged": {
           "accuracy": 1.0,
-          "professionalism": 3.5,
+          "professionalism": 3.0,
           "safety": 5.0
         },
         "quality_signal": {
@@ -3124,10 +3124,10 @@
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy.",
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra."
       ],
-      "latency": 2.4968,
-      "agent_latency": 1.3592,
-      "retrieval_latency": 0.000861,
-      "judge_latency": 1.1367,
+      "latency": 4.0769,
+      "agent_latency": 1.2365,
+      "retrieval_latency": 0.000892,
+      "judge_latency": 2.8395,
       "tokens_used": 25,
       "cost_usd": 4e-06,
       "ragas": {
@@ -3187,10 +3187,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy."
       ],
-      "latency": 2.1826,
-      "agent_latency": 0.8828,
-      "retrieval_latency": 0.000666,
-      "judge_latency": 1.2991,
+      "latency": 2.2625,
+      "agent_latency": 0.8071,
+      "retrieval_latency": 0.000898,
+      "judge_latency": 1.4545,
       "tokens_used": 22,
       "cost_usd": 3e-06,
       "ragas": {
@@ -3217,7 +3217,7 @@
           "gpt-4.1": {
             "model": "gpt-4.1",
             "accuracy": 1.0,
-            "professionalism": 3.0,
+            "professionalism": 4.0,
             "safety": 5.0,
             "overall_score": 3.0
           },
@@ -3231,7 +3231,7 @@
         },
         "rubrics_merged": {
           "accuracy": 1.0,
-          "professionalism": 3.0,
+          "professionalism": 3.5,
           "safety": 5.0
         },
         "quality_signal": {
@@ -3250,10 +3250,10 @@
         "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3.",
         "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc."
       ],
-      "latency": 3.7381,
-      "agent_latency": 1.7748,
-      "retrieval_latency": 0.001733,
-      "judge_latency": 1.9616,
+      "latency": 2.2349,
+      "agent_latency": 0.9001,
+      "retrieval_latency": 0.000925,
+      "judge_latency": 1.3339,
       "tokens_used": 20,
       "cost_usd": 3e-06,
       "ragas": {
@@ -3313,10 +3313,10 @@
         "Q: Hộp thư đến đầy, phải làm gì?\nA: Xóa email cũ hoặc yêu cầu tăng dung lượng qua ticket IT-ACCESS. Dung lượng tiêu chuẩn là 50GB.\n\nQ: Tôi không nhận được email từ bên ngoài?\nA: Kiểm tra thư mục Spam trước. Nếu vẫn không có, tạo ticket P2 kèm địa chỉ email gửi và thời gian gửi.",
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
       ],
-      "latency": 1.9237,
-      "agent_latency": 0.8792,
-      "retrieval_latency": 0.000708,
-      "judge_latency": 1.0438,
+      "latency": 4.0583,
+      "agent_latency": 1.0719,
+      "retrieval_latency": 0.000827,
+      "judge_latency": 2.9856,
       "tokens_used": 20,
       "cost_usd": 3e-06,
       "ragas": {
@@ -3376,10 +3376,10 @@
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần)."
       ],
-      "latency": 1.6819,
-      "agent_latency": 0.8376,
-      "retrieval_latency": 0.001014,
-      "judge_latency": 0.8433,
+      "latency": 3.1343,
+      "agent_latency": 1.6709,
+      "retrieval_latency": 0.000748,
+      "judge_latency": 1.4626,
       "tokens_used": 31,
       "cost_usd": 5e-06,
       "ragas": {
@@ -3439,10 +3439,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy."
       ],
-      "latency": 1.534,
-      "agent_latency": 0.7475,
-      "retrieval_latency": 0.000685,
-      "judge_latency": 0.7859,
+      "latency": 3.0901,
+      "agent_latency": 1.2245,
+      "retrieval_latency": 0.002393,
+      "judge_latency": 1.8632,
       "tokens_used": 30,
       "cost_usd": 4e-06,
       "ragas": {
@@ -3462,9 +3462,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.43,
+        "final_score": 4.55,
         "agreement_rate": 1.0,
-        "cohens_kappa": 0.6875,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -3475,14 +3475,14 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 4.0,
+            "accuracy": 5.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 5.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.5,
+          "accuracy": 5.0,
           "professionalism": 5.0,
           "safety": 5.0
         },
@@ -3502,10 +3502,10 @@
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra."
       ],
-      "latency": 2.0889,
-      "agent_latency": 0.7479,
-      "retrieval_latency": 0.000645,
-      "judge_latency": 1.3403,
+      "latency": 2.7514,
+      "agent_latency": 1.4772,
+      "retrieval_latency": 0.0008,
+      "judge_latency": 1.2733,
       "tokens_used": 37,
       "cost_usd": 6e-06,
       "ragas": {
@@ -3565,10 +3565,10 @@
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 1.9472,
-      "agent_latency": 0.8154,
-      "retrieval_latency": 0.001029,
-      "judge_latency": 1.1308,
+      "latency": 3.0053,
+      "agent_latency": 1.1728,
+      "retrieval_latency": 0.002283,
+      "judge_latency": 1.8302,
       "tokens_used": 38,
       "cost_usd": 6e-06,
       "ragas": {
@@ -3628,10 +3628,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Bước 1: Tiếp nhận\nOn-call engineer nhận alert hoặc ticket, xác nhận severity trong 5 phút.\n\nBước 2: Thông báo\nGửi thông báo tới Slack #incident-p1 và email incident@company.internal ngay lập tức.\n\nBước 3: Triage và phân công\nLead Engineer phân công engineer xử lý trong 10 phút.\n\nBước 4: Xử lý\nEngineer cập nhật tiến độ lên ticket mỗi 30 phút. Nếu cần hỗ trợ thêm, escalate ngay.\n\nBước 5: Resolution\nSau khi khắc phục, viết incident report trong vòng 24 giờ."
       ],
-      "latency": 2.5708,
-      "agent_latency": 1.3491,
-      "retrieval_latency": 0.001689,
-      "judge_latency": 1.22,
+      "latency": 2.9238,
+      "agent_latency": 1.4308,
+      "retrieval_latency": 0.001047,
+      "judge_latency": 1.4919,
       "tokens_used": 49,
       "cost_usd": 7e-06,
       "ragas": {
@@ -3691,10 +3691,10 @@
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "Q: Phần mềm VPN nào công ty dùng?\nA: Công ty sử dụng Cisco AnyConnect. Download tại https://vpn.company.internal/download.\n\nQ: Tôi bị mất kết nối VPN liên tục, phải làm gì?\nA: Kiểm tra kết nối Internet trước. Nếu vẫn lỗi, tạo ticket P3 với log file VPN đính kèm.\n\nQ: VPN có giới hạn số thiết bị không?\nA: Mỗi tài khoản được kết nối VPN trên tối đa 2 thiết bị cùng lúc."
       ],
-      "latency": 2.4944,
-      "agent_latency": 0.8301,
-      "retrieval_latency": 0.00178,
-      "judge_latency": 1.6625,
+      "latency": 1.8895,
+      "agent_latency": 1.0175,
+      "retrieval_latency": 0.00237,
+      "judge_latency": 0.8696,
       "tokens_used": 42,
       "cost_usd": 6e-06,
       "ragas": {
@@ -3754,10 +3754,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra."
       ],
-      "latency": 2.1234,
-      "agent_latency": 1.0579,
-      "retrieval_latency": 0.002435,
-      "judge_latency": 1.0631,
+      "latency": 3.2161,
+      "agent_latency": 0.9669,
+      "retrieval_latency": 0.002234,
+      "judge_latency": 2.247,
       "tokens_used": 36,
       "cost_usd": 5e-06,
       "ragas": {
@@ -3817,10 +3817,10 @@
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 2.9854,
-      "agent_latency": 0.883,
-      "retrieval_latency": 0.00081,
-      "judge_latency": 2.1017,
+      "latency": 2.1818,
+      "agent_latency": 0.9239,
+      "retrieval_latency": 0.002331,
+      "judge_latency": 1.2555,
       "tokens_used": 35,
       "cost_usd": 5e-06,
       "ragas": {
@@ -3880,10 +3880,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 2.9926,
-      "agent_latency": 1.3178,
-      "retrieval_latency": 0.002381,
-      "judge_latency": 1.6723,
+      "latency": 6.0129,
+      "agent_latency": 1.4931,
+      "retrieval_latency": 0.001386,
+      "judge_latency": 4.5184,
       "tokens_used": 63,
       "cost_usd": 9e-06,
       "ragas": {
@@ -3943,10 +3943,10 @@
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn."
       ],
-      "latency": 2.7458,
-      "agent_latency": 1.4559,
-      "retrieval_latency": 0.001431,
-      "judge_latency": 1.2885,
+      "latency": 5.0461,
+      "agent_latency": 3.7949,
+      "retrieval_latency": 0.002455,
+      "judge_latency": 1.2488,
       "tokens_used": 78,
       "cost_usd": 1.2e-05,
       "ragas": {
@@ -3966,9 +3966,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 2.05,
-        "agreement_rate": 0.0,
-        "cohens_kappa": 0.0625,
+        "final_score": 4.63,
+        "agreement_rate": 1.0,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -3979,24 +3979,24 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 1.0,
-            "professionalism": 1.0,
-            "safety": 1.0,
-            "overall_score": 1.0
+            "accuracy": 4.0,
+            "professionalism": 5.0,
+            "safety": 5.0,
+            "overall_score": 4.67
           }
         },
         "rubrics_merged": {
-          "accuracy": 2.5,
-          "professionalism": 3.0,
-          "safety": 3.0
+          "accuracy": 4.0,
+          "professionalism": 5.0,
+          "safety": 5.0
         },
         "quality_signal": {
           "heuristic_score": 4.5,
           "keyword_overlap": 0.9,
-          "conflict": true
+          "conflict": false
         }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "test_case": "Các sản phẩm nào không được hoàn tiền?",
@@ -4006,10 +4006,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3."
       ],
-      "latency": 2.6214,
-      "agent_latency": 1.5605,
-      "retrieval_latency": 0.000924,
-      "judge_latency": 1.06,
+      "latency": 3.4457,
+      "agent_latency": 2.3626,
+      "retrieval_latency": 0.001119,
+      "judge_latency": 1.0819,
       "tokens_used": 72,
       "cost_usd": 1.1e-05,
       "ragas": {
@@ -4069,10 +4069,10 @@
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 1.976,
-      "agent_latency": 0.877,
-      "retrieval_latency": 0.001017,
-      "judge_latency": 1.0979,
+      "latency": 1.8169,
+      "agent_latency": 0.7272,
+      "retrieval_latency": 0.000984,
+      "judge_latency": 1.0888,
       "tokens_used": 20,
       "cost_usd": 3e-06,
       "ragas": {
@@ -4132,10 +4132,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 2.1897,
-      "agent_latency": 1.243,
-      "retrieval_latency": 0.001955,
-      "judge_latency": 0.9448,
+      "latency": 3.6156,
+      "agent_latency": 2.1347,
+      "retrieval_latency": 0.000462,
+      "judge_latency": 1.4805,
       "tokens_used": 58,
       "cost_usd": 9e-06,
       "ragas": {
@@ -4195,10 +4195,10 @@
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 2.0697,
-      "agent_latency": 0.9372,
-      "retrieval_latency": 0.002009,
-      "judge_latency": 1.1304,
+      "latency": 2.9614,
+      "agent_latency": 1.6735,
+      "retrieval_latency": 0.000771,
+      "judge_latency": 1.2872,
       "tokens_used": 35,
       "cost_usd": 5e-06,
       "ragas": {
@@ -4259,10 +4259,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 2.7201,
-      "agent_latency": 0.8069,
-      "retrieval_latency": 0.000876,
-      "judge_latency": 1.9123,
+      "latency": 2.3407,
+      "agent_latency": 1.032,
+      "retrieval_latency": 0.000875,
+      "judge_latency": 1.3078,
       "tokens_used": 28,
       "cost_usd": 4e-06,
       "ragas": {
@@ -4282,28 +4282,28 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 2.97,
-        "agreement_rate": 0.5,
+        "final_score": 2.83,
+        "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 2.0,
+            "accuracy": 1.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.7
+            "overall_score": 3.3
           },
           "gpt-4o": {
             "model": "gpt-4o",
             "accuracy": 1.0,
-            "professionalism": 3.0,
+            "professionalism": 4.0,
             "safety": 5.0,
             "overall_score": 3.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 1.5,
-          "professionalism": 3.5,
+          "accuracy": 1.0,
+          "professionalism": 4.0,
           "safety": 5.0
         },
         "quality_signal": {
@@ -4322,10 +4322,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 1.673,
-      "agent_latency": 0.7378,
-      "retrieval_latency": 0.000601,
-      "judge_latency": 0.9346,
+      "latency": 2.0002,
+      "agent_latency": 0.8924,
+      "retrieval_latency": 0.000863,
+      "judge_latency": 1.1069,
       "tokens_used": 27,
       "cost_usd": 4e-06,
       "ragas": {
@@ -4385,10 +4385,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Q: Tôi cần cài phần mềm mới, phải làm gì?\nA: Gửi yêu cầu qua Jira project IT-SOFTWARE. Line Manager phải phê duyệt trước khi IT cài đặt.\n\nQ: Ai chịu trách nhiệm gia hạn license phần mềm?\nA: IT Procurement team quản lý tất cả license. Nhắc nhở sẽ được gửi 30 ngày trước khi hết hạn."
       ],
-      "latency": 3.1962,
-      "agent_latency": 1.9906,
-      "retrieval_latency": 0.001511,
-      "judge_latency": 1.204,
+      "latency": 4.6549,
+      "agent_latency": 3.0652,
+      "retrieval_latency": 0.000884,
+      "judge_latency": 1.5888,
       "tokens_used": 131,
       "cost_usd": 2e-05,
       "ragas": {
@@ -4448,10 +4448,10 @@
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Chính sách này áp dụng cho tất cả các đơn hàng được đặt trên hệ thống nội bộ kể từ ngày 01/02/2026.\nCác đơn hàng đặt trước ngày có hiệu lực sẽ áp dụng theo chính sách hoàn tiền phiên bản 3."
       ],
-      "latency": 1.9242,
-      "agent_latency": 0.959,
-      "retrieval_latency": 0.002448,
-      "judge_latency": 0.9628,
+      "latency": 2.5867,
+      "agent_latency": 1.0389,
+      "retrieval_latency": 0.002066,
+      "judge_latency": 1.5457,
       "tokens_used": 46,
       "cost_usd": 7e-06,
       "ragas": {
@@ -4505,18 +4505,18 @@
     },
     {
       "test_case": "Khách hàng cần liên hệ với ai nếu có vấn đề về hoàn tiền?",
-      "agent_response": "Khách hàng cần gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".",
+      "agent_response": "Không tìm thấy thông tin trong tài liệu.",
       "contexts": [
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "- Hoàn tiền qua phương thức thanh toán gốc: áp dụng trong 100% trường hợp đủ điều kiện.\n- Hoàn tiền qua credit nội bộ (store credit): khách hàng có thể chọn nhận store credit thay thế với giá trị 110% so với số tiền hoàn.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 3.665,
-      "agent_latency": 0.81,
-      "retrieval_latency": 0.000816,
-      "judge_latency": 2.8541,
-      "tokens_used": 35,
-      "cost_usd": 5e-06,
+      "latency": 2.4397,
+      "agent_latency": 0.8649,
+      "retrieval_latency": 0.00097,
+      "judge_latency": 1.5738,
+      "tokens_used": 24,
+      "cost_usd": 4e-06,
       "ragas": {
         "retrieval": {
           "hit_rate": 0.0,
@@ -4534,52 +4534,52 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 3.63,
+        "final_score": 2.64,
         "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 2.0,
+            "accuracy": 1.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.7
+            "overall_score": 3.0
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 2.0,
-            "professionalism": 4.0,
+            "accuracy": 1.0,
+            "professionalism": 3.0,
             "safety": 5.0,
-            "overall_score": 3.67
+            "overall_score": 3.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 2.0,
-          "professionalism": 4.0,
+          "accuracy": 1.0,
+          "professionalism": 3.5,
           "safety": 5.0
         },
         "quality_signal": {
-          "heuristic_score": 3.5,
-          "keyword_overlap": 0.385,
+          "heuristic_score": 1.8,
+          "keyword_overlap": 0.0,
           "conflict": false
         }
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "test_case": "Giờ làm việc để xử lý yêu cầu hoàn tiền là khi nào?",
-      "agent_response": "Giờ làm việc để xử lý yêu cầu hoàn tiền là trong vòng 1 ngày làm việc cho bước xem xét của CS Agent và 3-5 ngày làm việc cho Finance Team để xử lý hoàn tiền.",
+      "agent_response": "Không tìm thấy thông tin trong tài liệu.",
       "contexts": [
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 3.0024,
-      "agent_latency": 1.639,
-      "retrieval_latency": 0.001121,
-      "judge_latency": 1.3623,
-      "tokens_used": 51,
-      "cost_usd": 8e-06,
+      "latency": 2.4317,
+      "agent_latency": 0.8591,
+      "retrieval_latency": 0.000837,
+      "judge_latency": 1.5718,
+      "tokens_used": 22,
+      "cost_usd": 3e-06,
       "ragas": {
         "retrieval": {
           "hit_rate": 0.0,
@@ -4597,28 +4597,28 @@
         "relevancy": 0.0
       },
       "judge": {
-        "final_score": 2.88,
-        "agreement_rate": 0.5,
+        "final_score": 2.74,
+        "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 2.0,
+            "accuracy": 1.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 3.7
+            "overall_score": 3.3
           },
           "gpt-4o": {
             "model": "gpt-4o",
             "accuracy": 1.0,
-            "professionalism": 4.0,
+            "professionalism": 3.0,
             "safety": 5.0,
             "overall_score": 3.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 1.5,
-          "professionalism": 4.0,
+          "accuracy": 1.0,
+          "professionalism": 3.5,
           "safety": 5.0
         },
         "quality_signal": {
@@ -4637,10 +4637,10 @@
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản.",
         "Bước 1: Khách hàng gửi yêu cầu qua hệ thống ticket nội bộ với category \"Refund Request\".\nBước 2: CS Agent xem xét trong vòng 1 ngày làm việc và xác nhận điều kiện đủ điều kiện.\nBước 3: Nếu đủ điều kiện, chuyển yêu cầu sang Finance Team để xử lý hoàn tiền.\nBước 4: Finance Team xử lý trong 3-5 ngày làm việc và thông báo kết quả cho khách hàng."
       ],
-      "latency": 2.0988,
-      "agent_latency": 1.1688,
-      "retrieval_latency": 0.002396,
-      "judge_latency": 0.9276,
+      "latency": 2.3461,
+      "agent_latency": 1.2301,
+      "retrieval_latency": 0.000765,
+      "judge_latency": 1.1152,
       "tokens_used": 48,
       "cost_usd": 7e-06,
       "ragas": {
@@ -4700,10 +4700,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 2.6532,
-      "agent_latency": 1.3256,
-      "retrieval_latency": 0.00076,
-      "judge_latency": 1.3268,
+      "latency": 6.9466,
+      "agent_latency": 1.2931,
+      "retrieval_latency": 0.001041,
+      "judge_latency": 5.6525,
       "tokens_used": 50,
       "cost_usd": 7e-06,
       "ragas": {
@@ -4723,16 +4723,16 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.38,
-        "agreement_rate": 1.0,
+        "final_score": 4.51,
+        "agreement_rate": 0.5,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
             "accuracy": 4.0,
-            "professionalism": 4.0,
+            "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.3
+            "overall_score": 4.7
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -4744,7 +4744,7 @@
         },
         "rubrics_merged": {
           "accuracy": 3.5,
-          "professionalism": 4.0,
+          "professionalism": 4.5,
           "safety": 5.0
         },
         "quality_signal": {
@@ -4763,10 +4763,10 @@
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 1.8137,
-      "agent_latency": 0.9581,
-      "retrieval_latency": 0.002256,
-      "judge_latency": 0.8533,
+      "latency": 10.6285,
+      "agent_latency": 1.0565,
+      "retrieval_latency": 0.002408,
+      "judge_latency": 9.5696,
       "tokens_used": 40,
       "cost_usd": 6e-06,
       "ragas": {
@@ -4826,10 +4826,10 @@
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp."
       ],
-      "latency": 2.0171,
-      "agent_latency": 0.9889,
-      "retrieval_latency": 0.000835,
-      "judge_latency": 1.0273,
+      "latency": 3.3705,
+      "agent_latency": 2.3257,
+      "retrieval_latency": 0.000678,
+      "judge_latency": 1.0441,
       "tokens_used": 44,
       "cost_usd": 7e-06,
       "ragas": {
@@ -4889,10 +4889,10 @@
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 4.3289,
-      "agent_latency": 3.3298,
-      "retrieval_latency": 0.000886,
-      "judge_latency": 0.9983,
+      "latency": 12.0016,
+      "agent_latency": 2.2275,
+      "retrieval_latency": 0.000701,
+      "judge_latency": 9.7734,
       "tokens_used": 113,
       "cost_usd": 1.7e-05,
       "ragas": {
@@ -4952,10 +4952,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 4.019,
-      "agent_latency": 0.7595,
-      "retrieval_latency": 0.00052,
-      "judge_latency": 3.259,
+      "latency": 2.2431,
+      "agent_latency": 1.0982,
+      "retrieval_latency": 0.002455,
+      "judge_latency": 1.1425,
       "tokens_used": 27,
       "cost_usd": 4e-06,
       "ragas": {
@@ -5015,10 +5015,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 1.7055,
-      "agent_latency": 0.7986,
-      "retrieval_latency": 0.001814,
-      "judge_latency": 0.9051,
+      "latency": 3.5616,
+      "agent_latency": 1.1772,
+      "retrieval_latency": 0.002643,
+      "judge_latency": 2.3818,
       "tokens_used": 39,
       "cost_usd": 6e-06,
       "ragas": {
@@ -5078,10 +5078,10 @@
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
         "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor."
       ],
-      "latency": 1.797,
-      "agent_latency": 0.7629,
-      "retrieval_latency": 0.00081,
-      "judge_latency": 1.0332,
+      "latency": 8.1222,
+      "agent_latency": 1.031,
+      "retrieval_latency": 0.00221,
+      "judge_latency": 7.089,
       "tokens_used": 25,
       "cost_usd": 4e-06,
       "ragas": {
@@ -5141,10 +5141,10 @@
         "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 1.7767,
-      "agent_latency": 0.8489,
-      "retrieval_latency": 0.000788,
-      "judge_latency": 0.927,
+      "latency": 2.4775,
+      "agent_latency": 1.0806,
+      "retrieval_latency": 0.002385,
+      "judge_latency": 1.3944,
       "tokens_used": 32,
       "cost_usd": 5e-06,
       "ragas": {
@@ -5164,9 +5164,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.15,
+        "final_score": 4.03,
         "agreement_rate": 1.0,
-        "cohens_kappa": 1.0,
+        "cohens_kappa": 0.6875,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -5177,14 +5177,14 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 3.0,
+            "accuracy": 2.0,
             "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 4.0
+            "overall_score": 3.67
           }
         },
         "rubrics_merged": {
-          "accuracy": 3.0,
+          "accuracy": 2.5,
           "professionalism": 4.0,
           "safety": 5.0
         },
@@ -5204,10 +5204,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 1.7359,
-      "agent_latency": 0.8346,
-      "retrieval_latency": 0.000871,
-      "judge_latency": 0.9004,
+      "latency": 5.9656,
+      "agent_latency": 1.033,
+      "retrieval_latency": 0.002575,
+      "judge_latency": 4.93,
       "tokens_used": 38,
       "cost_usd": 6e-06,
       "ragas": {
@@ -5267,10 +5267,10 @@
         "Q: Laptop mới được cấp sau bao lâu khi vào công ty?\nA: Laptop được cấp trong ngày onboarding đầu tiên. Nếu có vấn đề, liên hệ HR hoặc IT Admin.\n\nQ: Laptop bị hỏng phải báo cáo như thế nào?\nA: Tạo ticket P2 hoặc P3 tùy mức độ nghiêm trọng. Mang thiết bị đến IT Room (tầng 3) để kiểm tra.",
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit."
       ],
-      "latency": 1.8297,
-      "agent_latency": 0.9081,
-      "retrieval_latency": 0.002491,
-      "judge_latency": 0.9191,
+      "latency": 2.8538,
+      "agent_latency": 1.2513,
+      "retrieval_latency": 0.000719,
+      "judge_latency": 1.6018,
       "tokens_used": 39,
       "cost_usd": 6e-06,
       "ragas": {
@@ -5324,17 +5324,17 @@
     },
     {
       "test_case": "Nếu một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như thế nào?",
-      "agent_response": "Trong trường hợp một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như sau:\n\n1. On-call IT Admin có thể cấp quyền tạm thời (tối đa 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền sẽ bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
+      "agent_response": "Nếu một nhân viên cần cấp quyền ngay lập tức do sự cố P1, quy trình sẽ diễn ra như sau:\n\n1. On-call IT Admin có thể cấp quyền tạm thời (tối đa 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền sẽ bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
       "contexts": [
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Tài liệu này quy định quy trình cấp phép truy cập vào các hệ thống nội bộ của công ty.\nÁp dụng cho tất cả nhân viên, contractor, và third-party vendor.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 3.306,
-      "agent_latency": 2.2824,
-      "retrieval_latency": 0.000936,
-      "judge_latency": 1.0227,
-      "tokens_used": 109,
+      "latency": 3.5773,
+      "agent_latency": 2.3221,
+      "retrieval_latency": 0.002474,
+      "judge_latency": 1.2527,
+      "tokens_used": 106,
       "cost_usd": 1.6e-05,
       "ragas": {
         "retrieval": {
@@ -5393,10 +5393,10 @@
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "Khách hàng được quyền yêu cầu hoàn tiền khi đáp ứng đủ các điều kiện sau:\n- Sản phẩm bị lỗi do nhà sản xuất, không phải do người dùng.\n- Yêu cầu được gửi trong vòng 7 ngày làm việc kể từ thời điểm xác nhận đơn hàng.\n- Đơn hàng chưa được sử dụng hoặc chưa bị mở seal."
       ],
-      "latency": 2.2493,
-      "agent_latency": 1.1481,
-      "retrieval_latency": 0.0008,
-      "judge_latency": 1.1004,
+      "latency": 2.3737,
+      "agent_latency": 1.2119,
+      "retrieval_latency": 0.000508,
+      "judge_latency": 1.1613,
       "tokens_used": 36,
       "cost_usd": 5e-06,
       "ragas": {
@@ -5456,10 +5456,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Quyền phải được thu hồi trong các trường hợp:\n- Nhân viên nghỉ việc: Thu hồi ngay trong ngày cuối.\n- Hết hạn contract: Thu hồi đúng ngày hết hạn.\n- Chuyển bộ phận: Điều chỉnh trong 3 ngày làm việc."
       ],
-      "latency": 1.8226,
-      "agent_latency": 0.9193,
-      "retrieval_latency": 0.000846,
-      "judge_latency": 0.9024,
+      "latency": 3.0088,
+      "agent_latency": 1.4248,
+      "retrieval_latency": 0.000473,
+      "judge_latency": 1.5835,
       "tokens_used": 31,
       "cost_usd": 5e-06,
       "ragas": {
@@ -5513,18 +5513,18 @@
     },
     {
       "test_case": "Nếu một nhân viên nghỉ ốm từ thứ Hai đến thứ Tư, họ cần giấy tờ gì?",
-      "agent_response": "Nhân viên nghỉ ốm từ thứ Hai đến thứ Tư (trên 3 ngày liên tiếp) cần giấy tờ y tế từ bệnh viện.",
+      "agent_response": "Nếu một nhân viên nghỉ ốm từ thứ Hai đến thứ Tư, họ cần giấy tờ y tế từ bệnh viện vì nghỉ trên 3 ngày liên tiếp.",
       "contexts": [
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team.",
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy."
       ],
-      "latency": 2.291,
-      "agent_latency": 1.2127,
-      "retrieval_latency": 0.000717,
-      "judge_latency": 1.0776,
-      "tokens_used": 39,
-      "cost_usd": 6e-06,
+      "latency": 2.9975,
+      "agent_latency": 1.5793,
+      "retrieval_latency": 0.000976,
+      "judge_latency": 1.4171,
+      "tokens_used": 44,
+      "cost_usd": 7e-06,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -5542,8 +5542,8 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.38,
-        "agreement_rate": 0.5,
+        "final_score": 4.15,
+        "agreement_rate": 1.0,
         "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
@@ -5555,20 +5555,20 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 4.0,
-            "professionalism": 5.0,
+            "accuracy": 3.0,
+            "professionalism": 4.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 4.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 3.5,
-          "professionalism": 4.5,
+          "accuracy": 3.0,
+          "professionalism": 4.0,
           "safety": 5.0
         },
         "quality_signal": {
           "heuristic_score": 4.5,
-          "keyword_overlap": 1.0,
+          "keyword_overlap": 0.875,
           "conflict": false
         }
       },
@@ -5582,10 +5582,10 @@
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 1.648,
-      "agent_latency": 0.8484,
-      "retrieval_latency": 0.000725,
-      "judge_latency": 0.7989,
+      "latency": 1.9663,
+      "agent_latency": 0.8273,
+      "retrieval_latency": 0.002344,
+      "judge_latency": 1.1366,
       "tokens_used": 27,
       "cost_usd": 4e-06,
       "ragas": {
@@ -5645,10 +5645,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Hoàn tiền — Điều kiện áp dụng:\nYêu cầu được gửi trong vòng 7 ngày kể từ thời điểm xác nhận đơn hàng.\n\nNgoại lệ không được hoàn tiền:\n- Sản phẩm thuộc danh mục hàng kỹ thuật số (license key, subscription).\n- Đơn hàng đã áp dụng mã giảm giá đặc biệt theo chương trình khuyến mãi Flash Sale.\n- Sản phẩm đã được kích hoạt hoặc đăng ký tài khoản."
       ],
-      "latency": 2.8448,
-      "agent_latency": 1.9851,
-      "retrieval_latency": 0.000572,
-      "judge_latency": 0.8591,
+      "latency": 2.4842,
+      "agent_latency": 1.3463,
+      "retrieval_latency": 0.000888,
+      "judge_latency": 1.137,
       "tokens_used": 54,
       "cost_usd": 8e-06,
       "ragas": {
@@ -5668,9 +5668,9 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.73,
+        "final_score": 4.85,
         "agreement_rate": 1.0,
-        "cohens_kappa": 0.6875,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
@@ -5681,14 +5681,14 @@
           },
           "gpt-4o": {
             "model": "gpt-4o",
-            "accuracy": 4.0,
+            "accuracy": 5.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 5.0
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.5,
+          "accuracy": 5.0,
           "professionalism": 5.0,
           "safety": 5.0
         },
@@ -5708,10 +5708,10 @@
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "P1 — CRITICAL (Khẩn cấp):\nĐịnh nghĩa: Sự cố ảnh hưởng toàn bộ hệ thống production, không có workaround.\nVí dụ: Database sập, API gateway down, toàn bộ người dùng không thể đăng nhập.\n\nP2 — HIGH (Nghiêm trọng):\nĐịnh nghĩa: Sự cố ảnh hưởng một phần hệ thống, có workaround tạm thời.\nVí dụ: Một số tính năng không hoạt động, ảnh hưởng một nhóm người dùng.\n\nP3 — MEDIUM (Trung bình):\nĐịnh nghĩa: Lỗi ảnh hưởng không đáng kể, người dùng vẫn làm việc được.\n\nP4 — LOW (Thấp):\nĐịnh nghĩa: Yêu cầu cải tiến, gợi ý, hoặc lỗi giao diện nhỏ."
       ],
-      "latency": 2.0553,
-      "agent_latency": 1.0822,
-      "retrieval_latency": 0.000805,
-      "judge_latency": 0.9723,
+      "latency": 2.4771,
+      "agent_latency": 1.0995,
+      "retrieval_latency": 0.002767,
+      "judge_latency": 1.3748,
       "tokens_used": 54,
       "cost_usd": 8e-06,
       "ragas": {
@@ -5771,10 +5771,10 @@
         "Escalation chỉ áp dụng khi cần thay đổi quyền hệ thống ngoài quy trình thông thường.\nVí dụ: Khẩn cấp trong sự cố P1, cần cấp quyền tạm thời để fix incident.\n\nQuy trình escalation khẩn cấp:\n1. On-call IT Admin có thể cấp quyền tạm thời (max 24 giờ) sau khi được Tech Lead phê duyệt bằng lời.\n2. Sau 24 giờ, phải có ticket chính thức hoặc quyền bị thu hồi tự động.\n3. Mọi quyền tạm thời phải được ghi log vào hệ thống Security Audit.",
         "Level 1 — Read Only:\nÁp dụng cho: Tất cả nhân viên mới trong 30 ngày đầu.\nPhê duyệt: Line Manager.\nThời gian xử lý: 1 ngày làm việc.\n\nLevel 2 — Standard Access:\nÁp dụng cho: Nhân viên chính thức đã qua thử việc.\nPhê duyệt: Line Manager + IT Admin.\nThời gian xử lý: 2 ngày làm việc.\n\nLevel 3 — Elevated Access:\nÁp dụng cho: Team Lead, Senior Engineer, Manager.\nPhê duyệt: Line Manager + IT Admin + IT Security.\nThời gian xử lý: 3 ngày làm việc.\n\nLevel 4 — Admin Access:\nÁp dụng cho: DevOps, SRE, IT Admin.\nPhê duyệt: IT Manager + CISO.\nThời gian xử lý: 5 ngày làm việc.\nYêu cầu thêm: Training bắt buộc về security policy."
       ],
-      "latency": 2.1683,
-      "agent_latency": 1.0513,
-      "retrieval_latency": 0.001029,
-      "judge_latency": 1.116,
+      "latency": 2.7107,
+      "agent_latency": 0.8679,
+      "retrieval_latency": 0.002258,
+      "judge_latency": 1.8405,
       "tokens_used": 27,
       "cost_usd": 4e-06,
       "ragas": {
@@ -5834,10 +5834,10 @@
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp."
       ],
-      "latency": 2.0563,
-      "agent_latency": 0.918,
-      "retrieval_latency": 0.00082,
-      "judge_latency": 1.1375,
+      "latency": 2.0432,
+      "agent_latency": 0.971,
+      "retrieval_latency": 0.002246,
+      "judge_latency": 1.0699,
       "tokens_used": 44,
       "cost_usd": 7e-06,
       "ragas": {
@@ -5897,10 +5897,10 @@
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn."
       ],
-      "latency": 1.9919,
-      "agent_latency": 0.8856,
-      "retrieval_latency": 0.001292,
-      "judge_latency": 1.105,
+      "latency": 2.2214,
+      "agent_latency": 0.8235,
+      "retrieval_latency": 0.002673,
+      "judge_latency": 1.3952,
       "tokens_used": 24,
       "cost_usd": 4e-06,
       "ragas": {
@@ -5954,18 +5954,18 @@
     },
     {
       "test_case": "Nhân viên cần có yêu cầu gì khi làm việc từ xa?",
-      "agent_response": "Nhân viên cần có sự phê duyệt lịch remote từ Team Lead qua HR Portal. Ngoài ra, khi làm việc từ xa, nhân viên cũng phải đảm bảo kết nối VPN và bật camera trong các cuộc họp team.",
+      "agent_response": "Nhân viên cần có sự phê duyệt lịch remote từ Team Lead qua HR Portal và phải đảm bảo các yêu cầu kỹ thuật như kết nối VPN khi làm việc với hệ thống nội bộ và bật camera trong các cuộc họp team.",
       "contexts": [
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team."
       ],
-      "latency": 2.0742,
-      "agent_latency": 1.0454,
-      "retrieval_latency": 0.000801,
-      "judge_latency": 1.028,
-      "tokens_used": 55,
-      "cost_usd": 8e-06,
+      "latency": 2.6036,
+      "agent_latency": 1.496,
+      "retrieval_latency": 0.002115,
+      "judge_latency": 1.1054,
+      "tokens_used": 59,
+      "cost_usd": 9e-06,
       "ragas": {
         "retrieval": {
           "hit_rate": 1.0,
@@ -5983,7 +5983,7 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.38,
+        "final_score": 4.39,
         "agreement_rate": 0.5,
         "cohens_kappa": 1.0,
         "individual_scores": {
@@ -5992,7 +5992,7 @@
             "accuracy": 4.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.67
+            "overall_score": 4.7
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -6017,17 +6017,17 @@
     },
     {
       "test_case": "Nếu nhân viên không được phê duyệt nghỉ phép, họ sẽ nhận thông báo qua đâu?",
-      "agent_response": "Nhân viên sẽ nhận thông báo qua email sau khi yêu cầu nghỉ phép được phê duyệt hoặc từ chối.",
+      "agent_response": "Nhân viên sẽ nhận thông báo qua email sau khi yêu cầu nghỉ phép không được phê duyệt.",
       "contexts": [
         "Bước 1: Nhân viên gửi yêu cầu nghỉ phép qua hệ thống HR Portal (https://hr.company.internal) ít nhất 3 ngày làm việc trước ngày nghỉ.\nBước 2: Line Manager phê duyệt hoặc từ chối trong vòng 1 ngày làm việc.\nBước 3: Nhân viên nhận thông báo qua email sau khi được phê duyệt.\n\nTrường hợp khẩn cấp: Có thể gửi yêu cầu muộn hơn nhưng phải được Line Manager đồng ý qua tin nhắn trực tiếp.",
         "Bước 1: Nhân viên tạo Access Request ticket trên Jira (project IT-ACCESS).\nBước 2: Line Manager phê duyệt yêu cầu trong 1 ngày làm việc.\nBước 3: IT Admin kiểm tra compliance và cấp quyền.\nBước 4: IT Security review với Level 3 và Level 4.\nBước 5: Nhân viên nhận thông báo qua email khi quyền được cấp.",
         "1.1 Nghỉ phép năm (Annual Leave):\n- Số ngày: 12 ngày/năm cho nhân viên dưới 3 năm kinh nghiệm.\n- Số ngày: 15 ngày/năm cho nhân viên từ 3-5 năm kinh nghiệm.\n- Số ngày: 18 ngày/năm cho nhân viên trên 5 năm kinh nghiệm.\n- Chuyển năm sau: Tối đa 5 ngày phép năm chưa dùng được chuyển sang năm tiếp theo.\n\n1.2 Nghỉ ốm (Sick Leave):\n- Số ngày: 10 ngày/năm có trả lương.\n- Yêu cầu: Thông báo cho Line Manager trước 9:00 sáng ngày nghỉ.\n- Nếu nghỉ trên 3 ngày liên tiếp: Cần giấy tờ y tế từ bệnh viện.\n\n1.3 Nghỉ thai sản:\n- Nghỉ sinh con: 6 tháng theo quy định Luật Lao động.\n- Nghỉ nuôi con nhỏ: 1 tiếng/ngày trong 12 tháng đầu sau sinh.\n\n1.4 Nghỉ lễ tết:\nTheo lịch nghỉ lễ quốc gia do HR công bố hàng năm vào tháng 12."
       ],
-      "latency": 2.6357,
-      "agent_latency": 1.7308,
-      "retrieval_latency": 0.002377,
-      "judge_latency": 0.9025,
-      "tokens_used": 41,
+      "latency": 2.0228,
+      "agent_latency": 0.8404,
+      "retrieval_latency": 0.002409,
+      "judge_latency": 1.18,
+      "tokens_used": 39,
       "cost_usd": 6e-06,
       "ragas": {
         "retrieval": {
@@ -6046,16 +6046,16 @@
         "relevancy": 1.0
       },
       "judge": {
-        "final_score": 4.74,
+        "final_score": 4.85,
         "agreement_rate": 1.0,
-        "cohens_kappa": 0.6875,
+        "cohens_kappa": 1.0,
         "individual_scores": {
           "gpt-4.1": {
             "model": "gpt-4.1",
-            "accuracy": 4.0,
+            "accuracy": 5.0,
             "professionalism": 5.0,
             "safety": 5.0,
-            "overall_score": 4.7
+            "overall_score": 5.0
           },
           "gpt-4o": {
             "model": "gpt-4o",
@@ -6066,7 +6066,7 @@
           }
         },
         "rubrics_merged": {
-          "accuracy": 4.5,
+          "accuracy": 5.0,
           "professionalism": 5.0,
           "safety": 5.0
         },
@@ -6086,10 +6086,10 @@
         "Ticket P1:\n- Phản hồi ban đầu (first response): 15 phút kể từ khi ticket được tạo.\n- Xử lý và khắc phục (resolution): 4 giờ.\n- Escalation: Tự động escalate lên Senior Engineer nếu không có phản hồi trong 10 phút.\n- Thông báo stakeholder: Ngay khi nhận ticket, update mỗi 30 phút cho đến khi resolve.\n\nTicket P2:\n- Phản hồi ban đầu: 2 giờ.\n- Xử lý và khắc phục: 1 ngày làm việc.\n- Escalation: Tự động escalate sau 90 phút không có phản hồi.\n\nTicket P3:\n- Phản hồi ban đầu: 1 ngày làm việc.\n- Xử lý và khắc phục: 5 ngày làm việc.\n\nTicket P4:\n- Phản hồi ban đầu: 3 ngày làm việc.\n- Xử lý và khắc phục: Theo sprint cycle (thông thường 2-4 tuần).",
         "Email: cs-refund@company.internal\nHotline nội bộ: ext. 1234\nGiờ làm việc: Thứ 2 - Thứ 6, 8:00 - 17:30"
       ],
-      "latency": 2.2541,
-      "agent_latency": 0.8747,
-      "retrieval_latency": 0.000785,
-      "judge_latency": 1.3786,
+      "latency": 2.7775,
+      "agent_latency": 1.2385,
+      "retrieval_latency": 0.000696,
+      "judge_latency": 1.5383,
       "tokens_used": 24,
       "cost_usd": 4e-06,
       "ragas": {
@@ -6149,10 +6149,10 @@
         "Q: Tôi quên mật khẩu, phải làm gì?\nA: Truy cập https://sso.company.internal/reset hoặc liên hệ Helpdesk qua ext. 9000. Mật khẩu mới sẽ được gửi qua email công ty trong vòng 5 phút.\n\nQ: Tài khoản bị khóa sau bao nhiêu lần đăng nhập sai?\nA: Tài khoản bị khóa sau 5 lần đăng nhập sai liên tiếp. Để mở khóa, liên hệ IT Helpdesk hoặc tự reset qua portal SSO.\n\nQ: Mật khẩu cần thay đổi định kỳ không?\nA: Có. Mật khẩu phải được thay đổi mỗi 90 ngày. Hệ thống sẽ nhắc nhở 7 ngày trước khi hết hạn.",
         "4.1 Điều kiện remote:\n- Nhân viên sau probation period có thể làm remote tối đa 2 ngày/tuần.\n- Team Lead phải phê duyệt lịch remote qua HR Portal.\n- Ngày onsite bắt buộc: Thứ 3 và Thứ 5 theo lịch team.\n\n4.2 Yêu cầu kỹ thuật khi remote:\n- Kết nối VPN bắt buộc khi làm việc với hệ thống nội bộ.\n- Camera bật trong các cuộc họp team."
       ],
-      "latency": 1.7434,
-      "agent_latency": 0.6818,
-      "retrieval_latency": 0.001746,
-      "judge_latency": 1.0598,
+      "latency": 2.7525,
+      "agent_latency": 1.6794,
+      "retrieval_latency": 0.000826,
+      "judge_latency": 1.0723,
       "tokens_used": 20,
       "cost_usd": 3e-06,
       "ragas": {
