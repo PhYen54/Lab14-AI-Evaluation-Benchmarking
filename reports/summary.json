@@ -1,49 +1,49 @@
 {
   "metadata": {
-    "timestamp": "2026-04-21T17:30:14",
+    "timestamp": "2026-04-21T19:10:35",
     "dataset_size": 50,
-    "agent_v1": "MainAgent (gpt-4o-mini)",
-    "agent_v2": "MainAgentV2 (gpt-4o)"
+    "agent_v1": "MainAgent (gpt-4o)",
+    "agent_v2": "MainAgentV2 (gpt-4.1)"
   },
   "metrics": {
     "v1": {
       "total_cases": 50,
-      "total_cost": 0.0020583,
-      "total_tokens": 13722,
-      "total_wall_clock_seconds": 56.69,
-      "avg_judge_score": 3.66,
-      "avg_faithfulness": 0.5675,
-      "avg_relevancy": 0.44216,
-      "avg_hit_rate": 0.0,
-      "avg_mrr": 0.0,
-      "avg_agreement_rate": 0.6242260000000001,
-      "avg_latency": 3.8729142799999683,
-      "pass_count": 41,
-      "fail_count": 9
+      "total_cost": 0.000522,
+      "total_tokens": 3486,
+      "total_wall_clock_seconds": 145.01,
+      "avg_judge_score": 4.4428,
+      "avg_faithfulness": 0.82,
+      "avg_relevancy": 0.82,
+      "avg_hit_rate": 0.82,
+      "avg_mrr": 0.75,
+      "avg_agreement_rate": 0.93,
+      "avg_latency": 2.900258,
+      "pass_count": 47,
+      "fail_count": 3
     },
     "v2": {
       "total_cases": 50,
-      "total_cost": 0.0388725,
-      "total_tokens": 15549,
-      "total_wall_clock_seconds": 54.06,
-      "avg_judge_score": 3.71,
-      "avg_faithfulness": 0.55192,
-      "avg_relevancy": 0.36534,
-      "avg_hit_rate": 0.0,
-      "avg_mrr": 0.0,
-      "avg_agreement_rate": 0.675186,
-      "avg_latency": 3.9042205760002253,
-      "pass_count": 39,
-      "fail_count": 11
+      "total_cost": 0.00032,
+      "total_tokens": 2131,
+      "total_wall_clock_seconds": 117.27,
+      "avg_judge_score": 4.3048,
+      "avg_faithfulness": 0.84,
+      "avg_relevancy": 0.84,
+      "avg_hit_rate": 0.84,
+      "avg_mrr": 0.73,
+      "avg_agreement_rate": 0.91,
+      "avg_latency": 2.345386,
+      "pass_count": 41,
+      "fail_count": 9
     }
   },
   "regression": {
     "decision": "BLOCK",
-    "reason": "Cost increased beyond acceptable threshold (>30%).",
-    "v1_avg_score": 3.66,
-    "v2_avg_score": 3.71,
-    "score_delta": 0.05,
-    "cost_ratio": 18.8857,
-    "latency_delta_seconds": 0.0313
+    "reason": "Quality degraded by 0.1380",
+    "v1_avg_score": 4.4428,
+    "v2_avg_score": 4.3048,
+    "score_delta": -0.1379999999999999,
+    "cost_ratio": 1.0,
+    "latency_delta_seconds": 0
   }
 }
